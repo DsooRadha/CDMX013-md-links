@@ -1,4 +1,3 @@
-import fs from 'fs';
 import {
     checkRoutes, convertingToAbsoluteRoutes, routeExist, pathIsFile, filesInDirectory, extFile, directoryPath
 } from './methods.js';

@@ -19,6 +19,10 @@ export const filename = (routes) => pathLib.basename(routes)
 //  const file = '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md'
 const readFile = fs.readFileSync(file, 'utf8')
 
+const arrayLinks=['https://github.com/DsooRadha/CDMX013-md-links/blob/main/pruebasMD/README.md',
+'https://github.com/users/DsooRadha/projects/2/views/1',
+'http://www.liimni.net']
+
 // -------------------extraer Links ----------
 const stringFile = readFile.toString()
 const textUniqueInFile = []
@@ -56,6 +60,29 @@ fetch('http://www.limni.net')
     message = 'fail'
     console.log(error);
   });
+
+  const validateLinks= (arrayWithLinks)=>{
+    arrayWithLinks.forEach (link =>{
+      console.log(typeof link)
+      fetch(link)
+    .then((response) => {
+      statusHttp = response.status
+      console.log(statusHttp);
+  
+    }).then(() => {
+      if(statusHttp==200){
+        console.log ('ok')
+      }
+      console.log('fail');
+    }).catch(() => {
+      message = 'fail'
+    });
+    })
+  }
+  console.log(validateLinks(arrayLinks))
+
+
+
 
 const dataFileMD = {
   href: linksUniqueInFile,
