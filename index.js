@@ -9,4 +9,4 @@ const pathAbsolute = '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'
 const file = '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md'
 const fileRelative = './prueba.md'
 
-console.log(mdLinks(file))
+console.log(mdLinks(pathAbsolute))
