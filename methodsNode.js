@@ -41,7 +41,8 @@ const validateLinks = (arrayWithLinks) => {
       });
   })
 }
-//console.log(validateLinks(arrayLinks))
+// Segundo en borrrar  
+console.log(validateLinks(arrayLinks))
 
 const textUniqueInFile = [];
 const linksUniqueInFile = [];
@@ -73,5 +74,5 @@ const dataFileMD = {
   status: statusHttp,
   messageLink: message,
 }
-
-//console.log(dataFileMD)
+//Primero en desbloquear para la demo
+console.log(dataFileMD)
