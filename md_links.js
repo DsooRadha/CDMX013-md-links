@@ -1,5 +1,5 @@
 import {
-    checkRoutes, convertingToAbsoluteRoutes, routeExist, pathIsFile, filesInDirectory, extFile, directoryPath
+     convertingToAbsoluteRoutes, routeExist, pathIsFile, filesInDirectory, extFile, directoryPath
 } from './methods.js';
 
 export const mdLinks = (path) => {
@@ -23,6 +23,15 @@ export const mdLinks = (path) => {
 
 const filesInPathDirectory = (dirPath) => {
     const filesAndDirs = filesInDirectory(dirPath)
-    return filesAndDirs.filter((element) => extFile(element) === '.md').map((element) => convertingToAbsoluteRoutes(element))
+    // filesAndDirs.forEach(element=>{
+    //     if(extFile(element) === '.md'){
+    //         const filesMD= filesAndDirs.map((element) => convertingToAbsoluteRoutes(element))
+    //         return filesMD
+    //     }
+    //     if(directoryPath(element) === true){
+    //          return filesInPathDirectory
+    //      }
+    // })
+     return filesAndDirs.filter((element) => extFile(element) === '.md').map((element) => convertingToAbsoluteRoutes(element))
 }
-// console.log(filesInPathDirectory('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'))
+
