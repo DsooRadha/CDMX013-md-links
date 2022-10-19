@@ -1,40 +1,47 @@
-import fs from 'fs';
 import {
-    checkRoutes, convertingToAbsoluteRoutes, routeExist, pathIsFile, filesInDirectory, extFile, directoryPath
-} from './methods.js';
+    convertingToAbsoluteRoutes, routeExist, pathIsFile, filesInDirectory, extFile, directoryPath
+} from './methodsNode.js';
+import pathLib from 'node:path';
 
 export const mdLinks = (path) => {
-    if (checkRoutes(path) === false) {
-        // console.log('No soy absoluta')
-        path = convertingToAbsoluteRoutes(path);
-        // console.log('ya soy absoluta')
-    }
+    const absolutePath = convertingToAbsoluteRoutes(path);
 
-    if (routeExist(path) === false) {
+    if (routeExist(absolutePath) === false) {
         return 'GAME OVER'
     };
 
-    if (pathIsFile(path) === false) {
-        if (directoryPath(path) === true) {
-            console.log('es un directorio');
-            filesInPathDirectory(path)
-            return path
-        }
-    }
-    (extFile(path) === '.md')
-    return path
+    if (pathIsFile(absolutePath) === false) {
+        return filesInPathDirectory(absolutePath)
+    };
+
+    if (extFile(absolutePath) === '.md') {
+        return absolutePath
+    };
+
+    return 'GAME OVER'
 };
 
+/**
+ * This function get recursively  the files from a directory 
+ * @param {string} route: the path of the directory to get the files
+ * @return {array} an array with all the files in the directory
+ */
+const filesInPathDirectory = (route) => {
 
-const filesInPathDirectory = (path) => {
-    path = filesInDirectory(path)
-    path.forEach(element => {
-        if (extFile(element) === '.md') {
-            let filesinPath = convertingToAbsoluteRoutes(element)
-            console.log(filesinPath + ' ACA ESTOY')
-            path = [filesinPath]
-            return [filesinPath]
-        }
-    })
-}
-// console.log(filesInPathDirectory('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'))
+    let filesResult = [];
+
+    if (pathIsFile(route) === true && extFile(route) === '.md') {
+        filesResult.push(route)
+    } else if (directoryPath(route) === true) {
+        const filesDir = filesInDirectory(route);
+        filesDir.forEach((theFile) => {
+           // const newRoute = pathLib.join(route, theFile);
+            const  newRoute = (route+'/'+theFile)
+            filesResult = filesResult.concat(filesInPathDirectory(newRoute));
+        });
+    }
+
+    return filesResult
+};
+
+// console.log('RECURSIVE:::', filesInPathDirectory('./pruebasMD'));

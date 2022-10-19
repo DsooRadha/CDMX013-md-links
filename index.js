@@ -4,9 +4,9 @@ import {mdLinks} from './md_links.js'
 
 CLI();
 
-const pathRelative = "./pruebasMD"
+const pathRelative = "./pruebasSencilla"
 const pathAbsolute = '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'
-const file = '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md'
-const fileRelative = './prueba.md'
+const file = '/Users/dsoo/Developer/CDMX013-md-links/pruebasSencilla/prueba.md'
+const fileRelative = './pruebaSencilla/prueba.md'
 
-console.log(mdLinks(pathRelative))
+console.log(mdLinks(pathAbsolute))
