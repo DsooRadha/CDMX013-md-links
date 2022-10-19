@@ -15,8 +15,7 @@ export const filesInDirectory = (routes) => fs.readdirSync(routes);
 export const readOnlyFile = (routes) => fs.readFileSync(routes, 'utf8');
 export const filename = (routes) => pathLib.basename(routes)
 export const readFile = (routes) => fs.readFileSync(routes, 'utf8').toString()
-console.log(readFile(file))
-//  export const stringFile = (routes) => routes.toString()
+//console.log(readFile(file))
 
 // -------------------extraer Links ----------
 
@@ -42,7 +41,7 @@ const validateLinks = (arrayWithLinks) => {
       });
   })
 }
-console.log(validateLinks(arrayLinks))
+//console.log(validateLinks(arrayLinks))
 
 const textUniqueInFile = [];
 const linksUniqueInFile = [];
@@ -75,4 +74,4 @@ const dataFileMD = {
   messageLink: message,
 }
 
-console.log(dataFileMD)
+//console.log(dataFileMD)

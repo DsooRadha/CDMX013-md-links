@@ -1,6 +1,7 @@
 import {
-     convertingToAbsoluteRoutes, routeExist, pathIsFile, filesInDirectory, extFile, directoryPath
-} from './methods.js';
+    convertingToAbsoluteRoutes, routeExist, pathIsFile, filesInDirectory, extFile, directoryPath
+} from './methodsNode.js';
+import pathLib from 'node:path';
 
 export const mdLinks = (path) => {
     const absolutePath = convertingToAbsoluteRoutes(path);
@@ -10,28 +11,37 @@ export const mdLinks = (path) => {
     };
 
     if (pathIsFile(absolutePath) === false) {
-        console.log('es un directorio');
         return filesInPathDirectory(absolutePath)
-    }
-    
+    };
+
     if (extFile(absolutePath) === '.md') {
         return absolutePath
-    }
+    };
 
     return 'GAME OVER'
 };
 
-const filesInPathDirectory = (dirPath) => {
-    const filesAndDirs = filesInDirectory(dirPath)
-    // filesAndDirs.forEach(element=>{
-    //     if(extFile(element) === '.md'){
-    //         const filesMD= filesAndDirs.map((element) => convertingToAbsoluteRoutes(element))
-    //         return filesMD
-    //     }
-    //     if(directoryPath(element) === true){
-    //          return filesInPathDirectory
-    //      }
-    // })
-     return filesAndDirs.filter((element) => extFile(element) === '.md').map((element) => convertingToAbsoluteRoutes(element))
-}
+/**
+ * This function get recursively  the files from a directory 
+ * @param {string} route: the path of the directory to get the files
+ * @return {array} an array with all the files in the directory
+ */
+const filesInPathDirectory = (route) => {
 
+    let filesResult = [];
+
+    if (pathIsFile(route) === true && extFile(route) === '.md') {
+        filesResult.push(route)
+    } else if (directoryPath(route) === true) {
+        const filesDir = filesInDirectory(route);
+        filesDir.forEach((theFile) => {
+           // const newRoute = pathLib.join(route, theFile);
+            const  newRoute = (route+'/'+theFile)
+            filesResult = filesResult.concat(filesInPathDirectory(newRoute));
+        });
+    }
+
+    return filesResult
+};
+
+// console.log('RECURSIVE:::', filesInPathDirectory('./pruebasMD'));
