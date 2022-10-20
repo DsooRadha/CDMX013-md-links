@@ -42,7 +42,7 @@ const validateLinks = (arrayWithLinks) => {
   })
 }
 // Segundo en borrrar  
-console.log(validateLinks(arrayLinks))
+//console.log(validateLinks(arrayLinks))
 
 const textUniqueInFile = [];
 const linksUniqueInFile = [];
@@ -75,4 +75,4 @@ const dataFileMD = {
   messageLink: message,
 }
 //Primero en desbloquear para la demo
-console.log(dataFileMD)
+//console.log(dataFileMD)
