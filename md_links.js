@@ -1,9 +1,9 @@
 import {
     convertingToAbsoluteRoutes, routeExist, pathIsFile, filesInDirectory, extFile, directoryPath
 } from './methodsNode.js';
-import pathLib from 'node:path';
+// import pathLib from 'node:path';
 
-export const mdLinks = (path) => {
+export const routeFiles = (path) => {
     const absolutePath = convertingToAbsoluteRoutes(path);
 
     if (routeExist(absolutePath) === false) {
@@ -26,6 +26,7 @@ export const mdLinks = (path) => {
  * @param {string} route: the path of the directory to get the files
  * @return {array} an array with all the files in the directory
  */
+
 const filesInPathDirectory = (route) => {
 
     let filesResult = [];
@@ -35,8 +36,8 @@ const filesInPathDirectory = (route) => {
     } else if (directoryPath(route) === true) {
         const filesDir = filesInDirectory(route);
         filesDir.forEach((theFile) => {
-           // const newRoute = pathLib.join(route, theFile);
-            const  newRoute = (route+'/'+theFile)
+            const newRoute = (route + '/' + theFile)
+            // const newRoute = pathLib.join(route, theFile);
             filesResult = filesResult.concat(filesInPathDirectory(newRoute));
         });
     }
@@ -44,4 +45,12 @@ const filesInPathDirectory = (route) => {
     return filesResult
 };
 
-// console.log('RECURSIVE:::', filesInPathDirectory('./pruebasMD'));
+
+// const mdLinks = (path, option) => new Promise((resolve, reject) => {
+//     resolver();
+//     reject();
+// })
+
+// mdLinks.then((response) => {
+// }).catch(() => {
+// });

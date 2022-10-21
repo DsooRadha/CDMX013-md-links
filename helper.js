@@ -1,33 +1,44 @@
 import process from 'node:process';
 import readLine from 'node:readline';
-import util from 'util'
 import chalk from 'chalk';
 
-export const dataUser = {
-    route: '',
-    option: '',
-};
 export const CLI = () => {
-    // const [ , , url]=process.argv
-    // console.log(url)
-    // export const route = process.argv[2]
-    // console.log(route)
     console.clear();
+    console.log(chalk.blue('=============================================================='));
+    console.log(chalk.blue('         MD LINKS -VALIDA LOS LINKS DE TUS ARVHIVOS MD        '));
+    console.log(chalk.blue('=============================================================='));
 
     const rl = readLine.createInterface(process.stdin, process.stdout);
-
+    const dataUser = {
+        route: '',
+        option: '',
+    };
     rl.question((chalk.blue('Enter a route  ')), (response) => {
         dataUser.route = response
 
-        rl.setPrompt((chalk.bgBlack('1. --validate  2. --stats  3. --stats--validate 0.exit ')))
+        rl.setPrompt((chalk.blue('Select an option:  1. --validate true  2. ---validate false 3. --stats  4. --stats & --validate  0.exit ')))
         rl.prompt();
-    });
+        rl.on('line', (input) => {
+            if (input === '1') {
+                // console.log(mdLinks( response ))
+                console.log('Aca van la validacion completa (la que viene como true en el readme');
+            }
+            if (input === '2') {
+                console.log('Aca van la validacion simple (la que viene coo false en el readme)');
+            }
+            if (input === '3') {
+                console.log('estadisticas con cantidad de links y los que son unicos');
+            }
+            if (input === '4') {
+                console.log('todos los anteriores');
+            }
+            if (input === '0') {0
+                process.exit();
+            } else {
+                'ingresa una opción valida'
+            }
 
-    rl.on('line', (input) => {
-        if (input.trim() === '0') {
-            process.exit();
-        }
-        dataUser.option=input.trim()
+            dataUser.option = input.trim()
+        });
     });
-
 };
