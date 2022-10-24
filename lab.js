@@ -28,13 +28,15 @@ const routesArray = [
 ]
 
 const extractLinksAndText = (routesAbsolute) => {
+
   let result = {
-    resultRoute: {
-      totalLinks: 0,
-      linkUniqueNumber: 0,
-      linksString: [],
-      textUniqueInFile: [],
-    }
+    //   resultRoute: {
+    //     totalLinks: 0,
+    //     linkUniqueNumber: 0,
+    //     linksString: [],
+    //     textUniqueInFile: [],
+    //     nameFile:'',
+    //   }
   }
 
   const routesAbsolutesArray = routesAbsolute
@@ -63,16 +65,21 @@ const extractLinksAndText = (routesAbsolute) => {
       console.log('Unique Links text :::::::', linksUnique);
       // resultRoute['totalLinks'] =links;
       const text = stringFile.match(/\[.*?\(/g);
+      const linksAndText = (/\[(.+)\]\((https?:\/\/.+)\)/gi)
       const textUniqueInFile = text.map((element) => element.replace(/\[|\]|\(/g, ""))
       console.log('textUnique:::::::::', textUniqueInFile);
+      result[file] = {
+        nameFile: file,
+        totalLinks: links.length,
+
+      }
+      // result[file].resultRoute['nameFile'] =file
+      // result.resultRoute['totalLinks']=links.length;
+      // result.resultRoute['linkUniqueNumber']=new Set(links).size;
+      // result.resultRoute[' linksString']=linksUnique
+
     }
-    //-------------------------stats--------------------------
-    // total links  y Unique links
-    // console.log('Name File:::::::', file);
-    // const totalLinks = links.length
-    // console.log('TOTAL:::::::', totalLinks)
-    // const linksUniqueNumber = new Set(links).size;
-    // console.log('Unique Links :::::::', linksUniqueNumber);
+
     //-------------------------validate false-------------------
     //href = link text=[] file: name file.
     // console.log('Name File:::::::', file);
@@ -108,7 +115,7 @@ const extractLinksAndText = (routesAbsolute) => {
     // 2
     //console.log(validateLinks(arrayLinks))
   })
-
+  console.log(result);
   return result
 }
 extractLinksAndText(routesArray)
@@ -116,3 +123,10 @@ extractLinksAndText(routesArray)
 
 
 
+//-------------------------stats--------------------------
+    // total links  y Unique links
+    // console.log('Name File:::::::', file);
+    // const totalLinks = links.length
+    // console.log('TOTAL:::::::', totalLinks)
+    // const linksUniqueNumber = new Set(links).size;
+    // console.log('Unique Links :::::::', linksUniqueNumber);
