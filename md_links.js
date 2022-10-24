@@ -1,12 +1,14 @@
 import {
-    convertingToAbsoluteRoutes, routeExist, pathIsFile, filesInDirectory, extFile, directoryPath
-} from './methodsNode.js';
+    convertingToAbsoluteRoutes, pathIsFile, isDirectory
+} from './lab.js';
+import fs from 'fs';
+import pathLib from 'node:path';
 // import pathLib from 'node:path';
 
 export const routeFiles = (path) => {
     const absolutePath = convertingToAbsoluteRoutes(path);
 
-    if (routeExist(absolutePath) === false) {
+    if (fs.existsSync(absolutePath) === false) {
         return 'GAME OVER'
     };
 
@@ -14,7 +16,7 @@ export const routeFiles = (path) => {
         return filesInPathDirectory(absolutePath)
     };
 
-    if (extFile(absolutePath) === '.md') {
+    if (pathLib.extname(absolutePath) === '.md') {
         return absolutePath
     };
 
@@ -31,10 +33,10 @@ const filesInPathDirectory = (route) => {
 
     let filesResult = [];
 
-    if (pathIsFile(route) === true && extFile(route) === '.md') {
+    if (pathIsFile(route) === true && pathLib.extname(route) === '.md') {
         filesResult.push(route)
-    } else if (directoryPath(route) === true) {
-        const filesDir = filesInDirectory(route);
+    } else if (isDirectory(route) === true) {
+        const filesDir = fs.readdirSync(route);
         filesDir.forEach((theFile) => {
             const newRoute = (route + '/' + theFile)
             // const newRoute = pathLib.join(route, theFile);
