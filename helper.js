@@ -9,13 +9,10 @@ export const CLI = () => {
     console.log(chalk.blue('=============================================================='));
 
     const rl = readLine.createInterface(process.stdin, process.stdout);
-    const dataUser = {
-        route: '',
-        option: '',
-    };
-    rl.question((chalk.blue('Enter a route  ')), (response) => {
-        dataUser.route = response
 
+    rl.question((chalk.blue('Enter a route  ')), (response) => {
+        let route = response
+        // agregar condicional para estructura de una ruta regex
         rl.setPrompt((chalk.blue('Select an option:  1. --validate true  2. ---validate false 3. --stats  4. --stats & --validate  0.exit ')))
         rl.prompt();
         rl.on('line', (input) => {
@@ -32,13 +29,22 @@ export const CLI = () => {
             if (input === '4') {
                 console.log('todos los anteriores');
             }
-            if (input === '0') {0
+            if (input === '0') {
                 process.exit();
-            } else {
-                'ingresa una opción valida'
             }
-
-            dataUser.option = input.trim()
+            console.log((chalk.redBright('ingresa una opción valida')));
+            console.log(route);
         });
     });
 };
+
+
+
+
+//-------------------------stats--------------------------
+    // total links  y Unique links
+    // console.log('Name File:::::::', file);
+    // const totalLinks = links.length
+    // console.log('TOTAL:::::::', totalLinks)
+    // const linksUniqueNumber = new Set(links).size;
+    // console.log('Unique Links :::::::', linksUniqueNumber);
