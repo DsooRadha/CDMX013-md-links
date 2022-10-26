@@ -7,7 +7,6 @@ export const convertingToAbsoluteRoutes = (route) => pathLib.isAbsolute(route) =
 export const pathIsFile = (routes) => fs.statSync(routes).isFile();
 export const isDirectory = (routes) => fs.lstatSync(routes, (true, false)).isDirectory();
 export const readOnlyFile = (routes) => fs.readFileSync(routes, 'utf8');
-// export const filename = (routes) => pathLib.basename(routes)
 export const readFile = (routes) => fs.readFileSync(routes, 'utf8').toString()
 
 const routesArray = [
@@ -39,57 +38,61 @@ const extractLinksAndText = (routesAbsolute) => {
         const link = linkWithText.match(/\http.*?\)/g)
         const linkClean = link.toString().replace(/\)/g, "");
         // console.log('LINK:::::::::::::', link)
-        // console.log('LINK:::::::::::::', linkClean)
+        const arrayLinks = [linkClean]
+        //  console.log('LINKsssssss:::::::::::::', arrayLinks)
         const text = linkWithText.match(/\[.*?\(/g);
         const textClean = text.toString().replace(/\[|\]|\(/g, "")
 
-        fetch(linkClean) .then((response) => {
-             let statusHttp = response.status
-               result[file] = {
-                 href: linkClean,
-                 text: textClean,
-                 status: statusHttp,
-                 message: 'ok'
-               }
+        // arrayLinks.forEach(link => {
+        //   validateLinks(link)
 
-         }).catch((error) => {
-
-          result[file] = {
-             href: linkClean,
-            text: textClean,
-            status: error.message,
-             message: 'fail'
-           }
-         });
-
-        // result[file] = {
+        //     .then((response) => {
+        // result.push({
+        //   name: file,
         //   href: linkClean,
         //   text: textClean,
-        //   status: 'statusHttp',
-        //   message: 'message'
-        // }
-      })
+        //   status: response.status
+        //   message: response.statusText,
+        // })
+        //        
+        // }).catch((error) => {
 
-      
+        //   result.push({
+        //     name: file,
+        //     href: linkClean,
+        //     text: textClean,
+        //     status: error.message,
+        //     message: 'fail'
+        //   })
+        // });
+
+        result.push({
+          name: file,
+          href: linkClean,
+          text: textClean,
+          status: '',
+          message: 'message'
+        })
+      });
+      // })
     } else {
-      result[file] = {
+      result.push({
+        name: file,
         href: null,
         text: null,
         status: null,
         message: null
-      }
-      console.log('this file has no links:::::::', file);
+      })
+      // console.log('this file has no links:::::::',);
     }
-
-    //-------------------------validate false-------------------
-    //href = link text=[] file: name file
-    //----------------------Validate True -------------------------
-    //href = link text=[] file: name file. status= status HTTP message= ok or fail
 
   })
   console.log(result);
   return result
 }
-extractLinksAndText(routesArray)
+console.log(extractLinksAndText(routesArray));
 
-
+//-------------------------validate false-------------------
+    //href = link text=[] file: name file
+    //----------------------Validate True -------------------------
+    //href = link text=[] file: name file. status= status HTTP message= ok or fail

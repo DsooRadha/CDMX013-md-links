@@ -48,8 +48,8 @@ const filesInPathDirectory = (route) => {
 };
 
 
-// const mdLinks = (path, option) => new Promise((resolve, reject) => {
-//     resolver();
+// const mdLinks = (path, (true, false)) => new Promise((resolve, reject) => {
+//     resolve();
 //     reject();
 // })
 
