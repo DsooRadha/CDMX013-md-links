@@ -19,9 +19,9 @@ export const validateLinks = (link) => {
 
 
 
-validateLinks('https://google.com')
-    .then((res) => {
-        console.log({ status, message });
-    })
+// validateLinks('https://google.com')
+//     .then((result) => {
+//         console.log(result);
+//     })
 
 

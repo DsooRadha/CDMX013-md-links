@@ -10,7 +10,7 @@ export const readOnlyFile = (routes) => fs.readFileSync(routes, 'utf8');
 export const readFile = (routes) => fs.readFileSync(routes, 'utf8').toString()
 
 const routesArray = [
-  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md',
+  // '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md',
   '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/level2/level2.md',
   '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/level2/level3/level3.md',
   '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/nivel1.md',
@@ -20,7 +20,7 @@ const routesArray = [
 
 const extractLinksAndText = (routesAbsolute) => {
 
-  let result = []
+  let resultArray = []
 
   const routesAbsolutesArray = routesAbsolute
   // console.log('routes:::::::',routesAbsolutesArray);
@@ -42,41 +42,62 @@ const extractLinksAndText = (routesAbsolute) => {
         //  console.log('LINKsssssss:::::::::::::', arrayLinks)
         const text = linkWithText.match(/\[.*?\(/g);
         const textClean = text.toString().replace(/\[|\]|\(/g, "")
-
+// const promArray= Promise.allarrayLinks
+const statusAndMessage=[]
+const arrayProm=arrayLinks.map(element=>{
+  return validateLinks(element)
+})
+const prom=Promise.all(arrayProm);
+prom.then((res)=>{
+  statusAndMessage.push(...res)
+//  console.log(...res)
+})
+console.log(statusAndMessage);
         // arrayLinks.forEach(link => {
         //   validateLinks(link)
+        //     .then((result) => {
+        //      return {
+        //         name: file,
+        //         href: linkClean,
+        //         text: textClean,
+        //         status: result.status,
+        //         message: result.statusText,
+        //       }
+      
+        //     })
+            
 
-        //     .then((response) => {
+          //     .then((response) => {
+          // result.push({
+          //   name: file,
+          //   href: linkClean,
+          //   text: textClean,
+          //   status: response.status
+          //   message: response.statusText,
+          // })
+          //        
+          // }).catch((error) => {
+
+          //   result.push({
+          //     name: file,
+          //     href: linkClean,
+          //     text: textClean,
+          //     status: error.message,
+          //     message: 'fail'
+          //   })
+        //});
+
         // result.push({
         //   name: file,
         //   href: linkClean,
         //   text: textClean,
-        //   status: response.status
-        //   message: response.statusText,
+        //   status: '',
+        //   message: 'message'
         // })
-        //        
-        // }).catch((error) => {
-
-        //   result.push({
-        //     name: file,
-        //     href: linkClean,
-        //     text: textClean,
-        //     status: error.message,
-        //     message: 'fail'
-        //   })
-        // });
-
-        result.push({
-          name: file,
-          href: linkClean,
-          text: textClean,
-          status: '',
-          message: 'message'
-        })
       });
       // })
     } else {
-      result.push({
+      resultArray.push({
         name: file,
         href: null,
         text: null,
@@ -87,8 +108,7 @@ const extractLinksAndText = (routesAbsolute) => {
     }
 
   })
-  console.log(result);
-  return result
+  return resultArray
 }
 console.log(extractLinksAndText(routesArray));
 

@@ -32,7 +32,7 @@ export const CLI = () => {
             if (input === '0') {
                 process.exit();
             }
-            console.log((chalk.redBright('ingresa una opción valida')));
+            // console.log((chalk.redBright('ingresa una opción valida')));
             console.log(route);
         });
     });
