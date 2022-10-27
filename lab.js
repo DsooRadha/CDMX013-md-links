@@ -18,18 +18,19 @@ const routesArray = [
   '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md'
 ]
 
+
+/** 
+ * @param {array} fileMD
+ * @return {array} an array object validate false
+ */
 const extractLinksAndText = (routesAbsolute) => {
 
   let resultArray = []
 
   const routesAbsolutesArray = routesAbsolute
-  // console.log('routes:::::::',routesAbsolutesArray);
   routesAbsolutesArray.forEach(file => {
-    // console.log('FILE::::::::::::::', file);
     const stringFile = readFile(file)
-    // console.log('aAQUI:::::::', stringFile);
     const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
-    // console.log('TEXT AND FILE :::::::::::::::::::::::::', textAndLinksMD)
 
     if (textAndLinksMD !== null) {
       // console.log('Name File:::::::', file);
@@ -42,17 +43,16 @@ const extractLinksAndText = (routesAbsolute) => {
         //  console.log('LINKsssssss:::::::::::::', arrayLinks)
         const text = linkWithText.match(/\[.*?\(/g);
         const textClean = text.toString().replace(/\[|\]|\(/g, "")
-// const promArray= Promise.allarrayLinks
-const statusAndMessage=[]
-const arrayProm=arrayLinks.map(element=>{
-  return validateLinks(element)
-})
-const prom=Promise.all(arrayProm);
-prom.then((res)=>{
-  statusAndMessage.push(...res)
-//  console.log(...res)
-})
-console.log(statusAndMessage);
+      
+        // const arrayProm=arrayLinks.map(element=>{
+        //   return validateLinks(element)
+        // })
+        // const prom=Promise.all(arrayProm);
+        // prom.then((res)=>{
+
+        // //  console.log(...res)
+        // })
+
         // arrayLinks.forEach(link => {
         //   validateLinks(link)
         //     .then((result) => {
@@ -63,37 +63,35 @@ console.log(statusAndMessage);
         //         status: result.status,
         //         message: result.statusText,
         //       }
-      
+
         //     })
-            
 
-          //     .then((response) => {
-          // result.push({
-          //   name: file,
-          //   href: linkClean,
-          //   text: textClean,
-          //   status: response.status
-          //   message: response.statusText,
-          // })
-          //        
-          // }).catch((error) => {
 
-          //   result.push({
-          //     name: file,
-          //     href: linkClean,
-          //     text: textClean,
-          //     status: error.message,
-          //     message: 'fail'
-          //   })
-        //});
-
+        //     .then((response) => {
         // result.push({
         //   name: file,
         //   href: linkClean,
         //   text: textClean,
-        //   status: '',
-        //   message: 'message'
+        //   status: response.status
+        //   message: response.statusText,
         // })
+        //        
+        // }).catch((error) => {
+
+        //   result.push({
+        //     name: file,
+        //     href: linkClean,
+        //     text: textClean,
+        //     status: error.message,
+        //     message: 'fail'
+        //   })
+        //});
+
+        resultArray.push({
+          name: file,
+          href: linkClean,
+          text: textClean,
+        })
       });
       // })
     } else {
@@ -101,10 +99,7 @@ console.log(statusAndMessage);
         name: file,
         href: null,
         text: null,
-        status: null,
-        message: null
       })
-      // console.log('this file has no links:::::::',);
     }
 
   })

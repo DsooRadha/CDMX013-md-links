@@ -1,9 +1,6 @@
-import {
-    convertingToAbsoluteRoutes, pathIsFile, isDirectory
-} from './lab.js';
+import { convertingToAbsoluteRoutes, pathIsFile, isDirectory } from './lab.js';
 import fs from 'fs';
 import pathLib from 'node:path';
-// import pathLib from 'node:path';
 
 export const routeFiles = (path) => {
     const absolutePath = convertingToAbsoluteRoutes(path);
@@ -46,13 +43,3 @@ const filesInPathDirectory = (route) => {
 
     return filesResult
 };
-
-
-// const mdLinks = (path, (true, false)) => new Promise((resolve, reject) => {
-//     resolve();
-//     reject();
-// })
-
-// mdLinks.then((response) => {
-// }).catch(() => {
-// });

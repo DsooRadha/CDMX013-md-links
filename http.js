@@ -1,23 +1,71 @@
 import fetch from 'node-fetch';
 
-export const validateLinks = (link) => {
+const testObject = [
 
-    return fetch(link)
-        .then((response) => {
+    {
+        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/nivel1.md',
+        href: null,
+        text: null
+    },
+    {
+        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
+        href: 'https://ejemplo.com',
+        text: 'image example'
+    },
+    {
+        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
+        href: 'http://www.limni.net',
+        text: 'enlace en línea'
+    },
+    {
+        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
+        href: 'https://ejemplo.com',
+        text: 'image example'
+    },
+    {
+        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
+        href: 'https://nodejs.org/',
+        text: 'Node.js'
+    },
+    {
+        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md',
+        href: 'http://www.limni.net',
+        text: 'enlace en línea'
+    },
+    {
+        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md',
+        href: 'http://www.liimni.net',
+        text: 'enlace roto'
+    }
+]
+export const validateLinks = (arrayObjects) => {
+    arrayObjects.forEach(element => {
+        if (element.href !== null) {
+            let arrayLinks = [element.href]
+            const arrayProm = arrayLinks.map(link => {
+                return fetch(link)
+                    .then((response) => {
+                        return { status: response.status, message: response.statusText }
 
-            let status = response.status
-            let message = response.statusText
-            return { status, message }
+                    }).catch((error) => {
+                        return { status: error.message, message: 'fail' }
+                    });
+            })
+            const prom = Promise.all(arrayProm);
+            prom.then((res) => {
+                // console.log(res)
+            });
 
-        }).catch((error) => {
+            const total = Promise.all([prom, ...arrayObjects]);
+            total.then((resTotal) => {
+                console.log(...resTotal,'AcÁ::::::::::::::::::')
+            });
+        };
+    });
 
-            let status = error.message
-            let message = 'fail'
-            return { status, message }
-        });
-}
+};
 
-
+console.log(validateLinks(testObject))
 
 // validateLinks('https://google.com')
 //     .then((result) => {
