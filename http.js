@@ -65,7 +65,7 @@ export const validateLinks = (arrayObjects) => {
 
 };
 
-console.log(validateLinks(testObject))
+//console.log(validateLinks(testObject))
 
 // validateLinks('https://google.com')
 //     .then((result) => {
