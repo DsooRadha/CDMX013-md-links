@@ -1,27 +1,31 @@
 import { routeFiles } from "./routes.js";
+import { extractLinksAndText } from './lab.js'
+import { validateLinks } from './http.js'
 
 let option = true
 const mdLinks = (path) => {
+    const arrayObjects = [];
     new Promise((resolve, reject) => {
 
+
         if (option) {
-            return resolve('Hola mundo');
+            arrayObjects.push(validateLinks(extractLinksAndText(routeFiles(path))));
+
+
         } else {
-            const pasoUno = routeFiles(path);
-            const pasoDos = extractLinksAndText(pasoUno);
-            pasoDos.forEach(element => {
-                console.log(element.href)
+
+            const validateFalse = extractLinksAndText(routeFiles(path));
+            validateFalse.forEach(element => {
+                arrayObjects.push(element)
             })
-            return reject('Adios mundo');
         }
+
     });
+    return arrayObjects
 }
 
-
-// console.log(mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'))
-
-mdLinks.then((response) => {
-    console.log(response, 'Alguno de los tipos de validacion fue exitoso');
-}).catch((response) => {
-    console.log(response, 'GAME OVER');
-});
+const arrayPromise = mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD')
+const resultPromise = Promise.all(...arrayPromise)
+resultPromise.then((result) => {
+    console.log(result);
+})

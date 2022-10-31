@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 
 const testObject = [
-
     {
         name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/nivel1.md',
         href: null,
@@ -57,6 +56,6 @@ return addStatusAndMessage
 
 const arrayPromises= validateLinks(testObject)
 const endObject= Promise.all(arrayPromises)
-endObject.then ((res)=>{
-    console.log(res);
+endObject.then ((result)=>{
+    // console.log(result);
 })
