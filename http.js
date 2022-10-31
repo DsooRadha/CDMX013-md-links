@@ -39,39 +39,24 @@ const testObject = [
     }
 ]
 export const validateLinks = (arrayObjects) => {
-    const addStatusAndMessage=[...arrayObjects];
-    addStatusAndMessage.map(element => {
+   
+   const  addStatusAndMessage=arrayObjects.map(element => {
+
         if (element.href !== null) {
-            let arrayLinks = [element.href]
-            console.log(element.href);
-            const arrayProm = arrayLinks.map(link => {
                 return fetch(element.href)
                     .then((response) => {
-                        return { status: response.status, message: response.statusText }
+                        return { ...element, status: response.status, message: response.statusText }
 
                     }).catch((error) => {
-                        return { status: error.message, message: 'fail' }
+                        return { ...element, status: error.message, message: 'fail' }
                     });
-            })
-            const prom = Promise.all(arrayProm, addStatusAndMessage);
-            prom.then((res) => {
-                // console.log(res)
-            });
-
-            const total = Promise.all([prom,  addStatusAndMessage]);
-            total.then((resTotal) => {
-                console.log(...resTotal,'AcÁ::::::::::::::::::')
-            });
          };
     });
-
+return addStatusAndMessage
 };
 
-console.log(validateLinks(testObject))
-
-// validateLinks('https://google.com')
-//     .then((result) => {
-//         console.log(result);
-//     })
-
-
+const arrayPromises= validateLinks(testObject)
+const endObject= Promise.all(arrayPromises)
+endObject.then ((res)=>{
+    console.log(res);
+})
