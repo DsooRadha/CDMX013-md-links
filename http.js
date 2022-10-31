@@ -39,11 +39,13 @@ const testObject = [
     }
 ]
 export const validateLinks = (arrayObjects) => {
-    arrayObjects.forEach(element => {
+    const addStatusAndMessage=[...arrayObjects];
+    addStatusAndMessage.map(element => {
         if (element.href !== null) {
             let arrayLinks = [element.href]
+            console.log(element.href);
             const arrayProm = arrayLinks.map(link => {
-                return fetch(link)
+                return fetch(element.href)
                     .then((response) => {
                         return { status: response.status, message: response.statusText }
 
@@ -51,21 +53,21 @@ export const validateLinks = (arrayObjects) => {
                         return { status: error.message, message: 'fail' }
                     });
             })
-            const prom = Promise.all(arrayProm);
+            const prom = Promise.all(arrayProm, addStatusAndMessage);
             prom.then((res) => {
                 // console.log(res)
             });
 
-            const total = Promise.all([prom, ...arrayObjects]);
+            const total = Promise.all([prom,  addStatusAndMessage]);
             total.then((resTotal) => {
                 console.log(...resTotal,'AcÁ::::::::::::::::::')
             });
-        };
+         };
     });
 
 };
 
-//console.log(validateLinks(testObject))
+console.log(validateLinks(testObject))
 
 // validateLinks('https://google.com')
 //     .then((result) => {

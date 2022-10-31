@@ -1,22 +1,24 @@
+import { routeFiles } from "./routes.js";
+
 let option = true
 const mdLinks =
+//  (path)=>{
     //   (path, (true, false)) => {
-
     new Promise((resolve, reject) => {
-        option = false
-
+    
         if (option) {
-            resolve('Hola mundo');
+           return resolve('Hola mundo');
         } else {
-            reject('Adios mundo');
+            return reject('Adios mundo');
         }
     });
+// }
 
-mdLinks.then((response) => {
-    console.log(response, 'Holo');
-}).catch((response) => {
-    console.log(response, 'error GAME OVER');
-});
-// mdLinks.then((response) => {
-// }).catch(() => {
-// });
+
+// console.log(mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'))
+
+ mdLinks.then((response) => {
+     console.log(response, 'Holo');
+ }).catch((response) => {
+     console.log(response, 'GAME OVER');
+ });

@@ -1,6 +1,8 @@
 import process from 'node:process';
 import readLine from 'node:readline';
 import chalk from 'chalk';
+import { routeFiles } from './routes.js';
+import { extractLinksAndText } from './lab.js';
 
 export const CLI = () => {
     console.clear();
@@ -9,19 +11,27 @@ export const CLI = () => {
     console.log(chalk.blue('=============================================================='));
 
     const rl = readLine.createInterface(process.stdin, process.stdout);
-
+    const dataUser = {
+        route: '',
+        option: '',
+    };
     rl.question((chalk.blue('Enter a route  ')), (response) => {
-        let route = response
-        // agregar condicional para estructura de una ruta regex
+        dataUser.route = response
+
         rl.setPrompt((chalk.blue('Select an option:  1. --validate true  2. ---validate false 3. --stats  4. --stats & --validate  0.exit ')))
         rl.prompt();
         rl.on('line', (input) => {
             if (input === '1') {
-                // console.log(mdLinks( response ))
-                console.log('Aca van la validacion completa (la que viene como true en el readme');
+               
+                console.log('Aca van la validacion completa (true)');
             }
             if (input === '2') {
-                console.log('Aca van la validacion simple (la que viene coo false en el readme)');
+                const pasoUno = routeFiles(response);
+                const pasoDos=extractLinksAndText(pasoUno);
+                pasoDos.forEach(element=>{
+                    console.log(element.href)
+                })
+                console.log('Aca van la validacion simple (false)');
             }
             if (input === '3') {
                 console.log('estadisticas con cantidad de links y los que son unicos');
@@ -30,16 +40,16 @@ export const CLI = () => {
                 console.log('todos los anteriores');
             }
             if (input === '0') {
+                0
                 process.exit();
+            } else {
+                'ingresa una opción valida'
             }
-            // console.log((chalk.redBright('ingresa una opción valida')));
-            console.log(route);
+
+            dataUser.option = input.trim()
         });
     });
 };
-
-
-
 
 //-------------------------stats--------------------------
     // total links  y Unique links

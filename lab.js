@@ -1,7 +1,5 @@
 import fs from 'fs';
 import pathLib from 'node:path';
-import fetch from 'node-fetch';
-import { validateLinks } from './http.js';
 
 export const convertingToAbsoluteRoutes = (route) => pathLib.isAbsolute(route) === false ? pathLib.resolve(route) : route;
 export const pathIsFile = (routes) => fs.statSync(routes).isFile();
@@ -10,7 +8,7 @@ export const readOnlyFile = (routes) => fs.readFileSync(routes, 'utf8');
 export const readFile = (routes) => fs.readFileSync(routes, 'utf8').toString()
 
 const routesArray = [
-  // '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md',
+  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md',
   '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/level2/level2.md',
   '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/level2/level3/level3.md',
   '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/nivel1.md',
@@ -18,12 +16,11 @@ const routesArray = [
   '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md'
 ]
 
-
 /** 
  * @param {array} fileMD
  * @return {array} an array object validate false
  */
-const extractLinksAndText = (routesAbsolute) => {
+export const extractLinksAndText = (routesAbsolute) => {
 
   let resultArray = []
 
@@ -53,47 +50,13 @@ const extractLinksAndText = (routesAbsolute) => {
         // //  console.log(...res)
         // })
 
-        // arrayLinks.forEach(link => {
-        //   validateLinks(link)
-        //     .then((result) => {
-        //      return {
-        //         name: file,
-        //         href: linkClean,
-        //         text: textClean,
-        //         status: result.status,
-        //         message: result.statusText,
-        //       }
-
-        //     })
-
-
-        //     .then((response) => {
-        // result.push({
-        //   name: file,
-        //   href: linkClean,
-        //   text: textClean,
-        //   status: response.status
-        //   message: response.statusText,
-        // })
-        //        
-        // }).catch((error) => {
-
-        //   result.push({
-        //     name: file,
-        //     href: linkClean,
-        //     text: textClean,
-        //     status: error.message,
-        //     message: 'fail'
-        //   })
-        //});
-
         resultArray.push({
           name: file,
           href: linkClean,
           text: textClean,
         })
       });
-      // })
+
     } else {
       resultArray.push({
         name: file,
@@ -105,9 +68,4 @@ const extractLinksAndText = (routesAbsolute) => {
   })
   return resultArray
 }
-console.log(extractLinksAndText(routesArray));
-
-//-------------------------validate false-------------------
-    //href = link text=[] file: name file
-    //----------------------Validate True -------------------------
-    //href = link text=[] file: name file. status= status HTTP message= ok or fail
+// console.log(extractLinksAndText(routesArray));
