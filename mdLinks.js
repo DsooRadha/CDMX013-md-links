@@ -3,7 +3,7 @@ import { extractLinksAndText } from './lab.js'
 import { validateLinks } from './http.js'
 
 let option = true
-const mdLinks = (path) => {
+export const mdLinks = (path) => {
     const arrayObjects = [];
     new Promise((resolve, reject) => {
 
@@ -27,5 +27,5 @@ const mdLinks = (path) => {
 const arrayPromise = mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD')
 const resultPromise = Promise.all(...arrayPromise)
 resultPromise.then((result) => {
-    console.log(result);
+    // console.log(result);
 })

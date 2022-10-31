@@ -30,26 +30,14 @@ export const extractLinksAndText = (routesAbsolute) => {
     const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
 
     if (textAndLinksMD !== null) {
-      // console.log('Name File:::::::', file);
+
       textAndLinksMD.forEach(linkWithText => {
-        // console.log(linkWithText);
+      
         const link = linkWithText.match(/\http.*?\)/g)
         const linkClean = link.toString().replace(/\)/g, "");
-        // console.log('LINK:::::::::::::', link)
-        const arrayLinks = [linkClean]
-        //  console.log('LINKsssssss:::::::::::::', arrayLinks)
         const text = linkWithText.match(/\[.*?\(/g);
         const textClean = text.toString().replace(/\[|\]|\(/g, "")
       
-        // const arrayProm=arrayLinks.map(element=>{
-        //   return validateLinks(element)
-        // })
-        // const prom=Promise.all(arrayProm);
-        // prom.then((res)=>{
-
-        // //  console.log(...res)
-        // })
-
         resultArray.push({
           name: file,
           href: linkClean,
@@ -57,15 +45,17 @@ export const extractLinksAndText = (routesAbsolute) => {
         })
       });
 
-    } else {
-      resultArray.push({
-        name: file,
-        href: null,
-        text: null,
-      })
-    }
+    } 
+    // else {
+    //   resultArray.push({
+    //     name: file,
+    //     href: null,
+    //     text: null,
+    //   })
+    // }
 
   })
   return resultArray
 }
+
 // console.log(extractLinksAndText(routesArray));

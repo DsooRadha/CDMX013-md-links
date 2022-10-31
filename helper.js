@@ -3,6 +3,8 @@ import readLine from 'node:readline';
 import chalk from 'chalk';
 import { routeFiles } from './routes.js';
 import { extractLinksAndText } from './lab.js';
+import { mdLinks } from './mdLinks.js'
+import { readFile } from './lab.js';
 
 export const CLI = () => {
     console.clear();
@@ -22,19 +24,35 @@ export const CLI = () => {
         rl.prompt();
         rl.on('line', (input) => {
             if (input === '1') {
-               
-                console.log('Aca van la validacion completa (true)');
+                const arrayPromise = mdLinks(response)
+                const resultPromise = Promise.all(...arrayPromise)
+                resultPromise.then((result) => {
+                    console.log(result);
+                })
+                // console.log('Aca van la validacion completa (true)');
             }
             if (input === '2') {
-                const pasoUno = routeFiles(response);
-                const pasoDos=extractLinksAndText(pasoUno);
-                pasoDos.forEach(element=>{
-                    console.log(element.href)
-                })
-                console.log('Aca van la validacion simple (false)');
+
+                console.log(extractLinksAndText(routeFiles(response)));
+                // console.log('Aca van la validacion simple (false)');
             }
             if (input === '3') {
-                console.log('estadisticas con cantidad de links y los que son unicos');
+                const stats=[];
+                const filesMD= routeFiles(response)
+                filesMD.forEach(file => {
+                    const stringFile = readFile(file)
+                    const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
+                    stats.push({
+                                file, link: textAndLinksMD
+                         })
+                });
+                const algo= stats.map(element=>{
+                    if (element.link !== null){
+                  const links= element.link
+                  console.log({file:element.file, links:links.length , uniqueLinks:new Set (links).size});
+                }
+                })
+                // console.log('estadisticas con cantidad de links y los que son unicos');
             }
             if (input === '4') {
                 console.log('todos los anteriores');

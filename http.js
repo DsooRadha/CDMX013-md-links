@@ -16,27 +16,13 @@ const testObject = [
         href: 'http://www.limni.net',
         text: 'enlace en línea'
     },
-    {
-        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
-        href: 'https://ejemplo.com',
-        text: 'image example'
-    },
-    {
-        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
-        href: 'https://nodejs.org/',
-        text: 'Node.js'
-    },
-    {
-        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md',
-        href: 'http://www.limni.net',
-        text: 'enlace en línea'
-    },
-    {
-        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md',
-        href: 'http://www.liimni.net',
-        text: 'enlace roto'
-    }
 ]
+
+/** 
+ * @param {arrayObjects} 
+ * @return {arrayPromise}  validate true
+ */
+
 export const validateLinks = (arrayObjects) => {
    
    const  addStatusAndMessage=arrayObjects.map(element => {
@@ -47,7 +33,7 @@ export const validateLinks = (arrayObjects) => {
                         return { ...element, status: response.status, message: response.statusText }
 
                     }).catch((error) => {
-                        return { ...element, status: error.message, message: 'fail' }
+                        return { ...element, status: error.message, message: 'FAIL' }
                     });
          };
     });
