@@ -1,1 +1,1 @@
-export const fetch = jest.fn(() => Promise.resolve())
+export const fetch = jest.fn(() => Promise.resolve({ status: 200 }))

@@ -46,16 +46,9 @@ export const extractLinksAndText = (routesAbsolute) => {
       });
 
     } 
-    // else {
-    //   resultArray.push({
-    //     name: file,
-    //     href: null,
-    //     text: null,
-    //   })
-    // }
 
   })
   return resultArray
 }
 
-// console.log(extractLinksAndText(routesArray));
+ console.log(extractLinksAndText(routesArray));
