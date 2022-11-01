@@ -1,11 +1,7 @@
 import fetch from 'node-fetch';
 
 const testObject = [
-    {
-        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/nivel1.md',
-        href: null,
-        text: null
-    },
+    
     {
         name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
         href: 'https://ejemplo.com',
@@ -30,8 +26,11 @@ export const validateLinks = (arrayObjects) => {
         if (element.href !== null) {
                 return fetch(element.href)
                     .then((response) => {
-                        return { ...element, status: response.status, message: response.statusText }
-
+                        if (response.status<400) {
+                            return { ...element, status: response.status, message: response.statusText }
+                        } else{
+                            return { ...element, status: response.status, message: 'FAIL' }
+                        }
                     }).catch((error) => {
                         return { ...element, status: error.message, message: 'FAIL' }
                     });
@@ -43,5 +42,5 @@ return addStatusAndMessage
 const arrayPromises= validateLinks(testObject)
 const endObject= Promise.all(arrayPromises)
 endObject.then ((result)=>{
-    // console.log(result);
+    //  console.log(result);
 })
