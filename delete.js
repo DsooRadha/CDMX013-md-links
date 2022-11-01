@@ -14,7 +14,7 @@ myFunction()
         console.log(result);
         return `${result} y luego paso 4`;
     })
-    .then((resultTwo)=>{
+    .then((resultTwo) => {
         console.log('linea 18', resultTwo);
     })
     .catch((error) => {

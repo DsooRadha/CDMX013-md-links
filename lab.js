@@ -51,4 +51,4 @@ export const extractLinksAndText = (routesAbsolute) => {
   return resultArray
 }
 
- console.log(extractLinksAndText(routesArray));
+//  console.log(extractLinksAndText(routesArray));

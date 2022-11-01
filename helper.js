@@ -14,8 +14,7 @@ export const CLI = () => {
 
     const rl = readLine.createInterface(process.stdin, process.stdout);
     const dataUser = {
-        route: '',
-        option: '',
+        route: ''
     };
     rl.question((chalk.blue('Enter a route  ')), (response) => {
         dataUser.route = response
@@ -24,18 +23,20 @@ export const CLI = () => {
         rl.prompt();
         rl.on('line', (input) => {
             if (input === '1') {
+
                 const arrayPromise = mdLinks(response);
                 const resultPromise = Promise.all(...arrayPromise);
                 resultPromise.then((result) => {
                     console.log(result);
                 })
-                // console.log('true');
             }
             if (input === '2') {
+
                 console.log(extractLinksAndText(routeFiles(response)));
-                // console.log('false');
             }
+
             if (input === '3') {
+                
                 const stats = [];
                 const filesMD = routeFiles(response)
                 filesMD.forEach(file => {
@@ -45,8 +46,10 @@ export const CLI = () => {
                         file, link: textAndLinksMD
                     })
                 });
-                const algo = stats.map(element => {
+                const objectStats = stats.map(element => {
+
                     if (element.link !== null) {
+
                         const links = element.link
                         console.log({ file: element.file, links: links.length, uniqueLinks: new Set(links).size });
                     }
@@ -54,19 +57,27 @@ export const CLI = () => {
                 // console.log('estadisticas con cantidad de links y los que son unicos');
             }
             if (input === '4') {
-                
+                const broken = []
                 const arrayPromise = mdLinks(response)
                 const resultPromise = Promise.all(...arrayPromise)
                 resultPromise.then((result) => {
-                    const broken = []
-                    result.forEach(element => {
-                        // console.log(element.message)
+
+                    result.map(element => {
+                        const file = element.name
+                        const message = element.message
                         if (element.message !== 'OK') {
-                            broken.push(element.message)
+                            broken.push({ file, broken: message.length });
                         }
+                        // if (element.link !== null){
+                        //    console.log( element.name, element.href, '<-------------')
+                        //     const links = element.href
+                        //     broken.push({ file: element.name, links:links.length, uniqueLinks: new Set(links).size });
+                        //     // broken.push({ totalLinks: message.length })
+                        // }
                     });
-                    console.log(broken.length);
+                    console.log(broken);
                 })
+
             }
             if (input === '0') {
                 0
@@ -79,11 +90,3 @@ export const CLI = () => {
         });
     });
 };
-
-//-------------------------stats--------------------------
-    // total links  y Unique links
-    // console.log('Name File:::::::', file);
-    // const totalLinks = links.length
-    // console.log('TOTAL:::::::', totalLinks)
-    // const linksUniqueNumber = new Set(links).size;
-    // console.log('Unique Links :::::::', linksUniqueNumber);
