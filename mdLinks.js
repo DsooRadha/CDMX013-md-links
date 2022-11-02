@@ -2,39 +2,27 @@ import { routeFiles } from "./routes.js";
 import { extractLinksAndText } from './lab.js'
 import { validateLinks } from './http.js'
 
-let option = true
-// { option: true }
-
-export const mdLinks = (path) => {
-    const arrayObjects = [];
-    new Promise((resolve, reject) => {
-        // return new Promise((resolve, reject) => {
-        if (option) {
-            arrayObjects.push(validateLinks(extractLinksAndText(routeFiles(path))));
-
-        } else {
-
-            const validateFalse = extractLinksAndText(routeFiles(path));
-            validateFalse.forEach(element => {
-                arrayObjects.push(element)
-            })
-        }
-    });
-    //resolve()
-    //  return Promise.all(... arrayObjects)
-    return arrayObjects
-    
+export const mdLinks = (path, {validate, stats}) => {
+    return new Promise((resolve, reject) => {
+        
+            if (validate) {
+                const arrayPromises= validateLinks(extractLinksAndText(routeFiles(path)));
+                Promise.all(arrayPromises).then((res)=>{
+                    resolve(res)
+                })
+                // resolve( Promise.all(arrayPromises));
+            } else {
+                resolve( extractLinksAndText(routeFiles(path)));
+            }
+        });
 }
 
-const arrayPromise = mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD')
-const resultPromise = Promise.all(...arrayPromise)
-resultPromise.then((result) => {
-      console.log(result);
-})
+const options = {
+    validate:true,
+    stats: true
+}
 
-//  console.log(mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'));
-
-//  mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD')
-//  .then((result) => {
-//     console.log(result);
-// })
+mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD', options)
+.then((result)=>{
+    console.log(result);
+});
