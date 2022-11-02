@@ -39,7 +39,7 @@ const filesInPathDirectory = (route) => {
             // const newRoute = pathLib.join(route, theFile);
             filesResult = filesResult.concat(filesInPathDirectory(newRoute));
         });
-    }
+    };
 
     return filesResult
 };

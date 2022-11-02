@@ -2,9 +2,8 @@ import process from 'node:process';
 import readLine from 'node:readline';
 import chalk from 'chalk';
 import { routeFiles } from './routes.js';
-import { extractLinksAndText } from './lab.js';
+import { extractLinksAndText, readFile } from './lab.js';
 import { mdLinks } from './mdLinks.js'
-import { readFile } from './lab.js';
 
 export const CLI = () => {
     console.clear();
@@ -36,7 +35,7 @@ export const CLI = () => {
             }
 
             if (input === '3') {
-                
+
                 const stats = [];
                 const filesMD = routeFiles(response)
                 filesMD.forEach(file => {

@@ -1,4 +1,4 @@
-export const arrayPromises = [
+export const arrayResults = [
     {
         name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
         href: 'http://www.limni.net',
@@ -9,7 +9,7 @@ export const arrayPromises = [
 ]
 export const arrayObjects =[
     {
-            name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md',
+            name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
             href: 'http://www.limni.net',
             text: 'enlace en línea'
     }

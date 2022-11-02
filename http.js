@@ -12,7 +12,7 @@ const testObject = [
         href: 'http://www.limni.net',
         text: 'enlace en línea'
     },
-]
+];
 
 /** 
  * @param {arrayObjects} 
@@ -39,8 +39,9 @@ export const validateLinks = (arrayObjects) => {
 return addStatusAndMessage
 };
 
-const arrayPromises= validateLinks(testObject)
-const endObject= Promise.all(arrayPromises)
-endObject.then ((result)=>{
-    //  console.log(result);
-})
+// const arrayPromises= validateLinks(testObject)
+// const endObject= Promise.all(arrayPromises)
+// endObject.then ((result)=>{
+//     //  console.log(result);
+// });
+

@@ -13,7 +13,7 @@
     "mdLinks": "node index.js"
   },
   "scripts": {
-    "test": "jest --verbose --coverage",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --verbose --coverage",
     "start": "node index.js"
   },
   "repository": {
