@@ -6,19 +6,21 @@ import { validateLinks } from './http.js';
  * @param {path,{options}} 
  * @return {arrayPromiseobjects}  
  */
-export const mdLinks = (path, { validate, stats }) => {
+export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndValidate }) => {
     return new Promise((resolve, reject) => {
 
-        if (validate) {
+
+        if (validateTrue) {
             const arrayPromises = validateLinks(extractLinksAndText(routeFiles(path)));
             Promise.all(arrayPromises).then((res) => {
                 resolve(res)
             })
             // resolve( Promise.all(arrayPromises));
         }
-        if (!validate) {
+        if (validateFalse) {
             resolve(extractLinksAndText(routeFiles(path)));
         }
+
         if (stats) {
             const stats = [];
             const allObjectStats = []
@@ -39,15 +41,43 @@ export const mdLinks = (path, { validate, stats }) => {
             })
             resolve(allObjectStats)
         }
-        if(!stats){
-            resolve ('broken')
+        if (statsAndValidate) {
+            const links = []
+            const unique = []
+            const stastCount = extractLinksAndText(routeFiles(path));
+            links.push(stastCount.length);
+            stastCount.forEach(element => {
+                if (!unique.includes(element.href)) {
+                    unique.push(element.href);
+                }
+
+                links.push(element.href)
+            })
+
+            const arrayPromises = validateLinks(extractLinksAndText(routeFiles(path)));
+            const validation = Promise.all(arrayPromises)
+            validation.then((result) => {
+
+                const broken = []
+
+                result.forEach(element => {
+
+                    if (element.message == 'FAIL') {
+                        broken.push(element)
+                    }
+                })
+                resolve({ file: path, totalLinks: stastCount.length, uniqueLinks: unique.length, brokenLinks: broken.length })
+            })
+
         }
     });
 };
 
 const options = {
-    validate: true,
-    stats: true
+    validateTrue: false,
+    validateFalse: false,
+    stats: false,
+    statsAndValidate: true,
 };
 
 mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD', options)
