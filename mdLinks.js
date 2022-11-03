@@ -1,5 +1,5 @@
 import { routeFiles } from "./routes.js";
-import { extractLinksAndText } from './lab.js';
+import { extractLinksAndText, readFile } from './lab.js';
 import { validateLinks } from './http.js';
 
 /** 
@@ -15,9 +15,33 @@ export const mdLinks = (path, { validate, stats }) => {
                 resolve(res)
             })
             // resolve( Promise.all(arrayPromises));
-        } else {
+        }
+        if (!validate) {
             resolve(extractLinksAndText(routeFiles(path)));
-        };
+        }
+        if (stats) {
+            const stats = [];
+            const allObjectStats = []
+            const filesMD = routeFiles(path)
+            filesMD.forEach(file => {
+                const stringFile = readFile(file)
+                const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
+                stats.push({
+                    file, link: textAndLinksMD
+                })
+            });
+            const objectStats = stats.map(element => {
+
+                if (element.link !== null) {
+                    const links = element.link
+                    allObjectStats.push({ file: element.file, links: links.length, uniqueLinks: new Set(links).size });
+                }
+            })
+            resolve(allObjectStats)
+        }
+        if(!stats){
+            resolve ('broken')
+        }
     });
 };
 
