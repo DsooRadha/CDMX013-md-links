@@ -4,20 +4,18 @@ import readLine from 'node:readline';
 import chalk from 'chalk';
 import { mdLinks } from './mdLinks.js';
 
-
-
 export const CLI = () => {
     console.clear();
-    console.log(chalk.blue('=============================================================='));
-    console.log(chalk.blue('             ------------ MD LINKS ---------              '));
-    console.log(chalk.blue('=============================================================='));
+    console.log(chalk.blue('=================================================================='));
+    console.log(chalk.blue('   👾    👾    👾   ---------- MD LINKS --------  👾    👾    👾  '));
+    console.log(chalk.blue('=================================================================='));
 
     const rl = readLine.createInterface(process.stdin, process.stdout);
 
-    rl.question((chalk.blue('Enter a route  ')), (response) => {
-        let path= response
+    rl.question((chalk.yellow('Enter a route  ')), (response) => {
+        let path = response;
 
-        rl.setPrompt((chalk.blue('Select an option:  1. --validate true  2. ---validate false 3. --stats  4. --stats & --validate  0.exit ')))
+        rl.setPrompt((chalk.cyan('Select an option:  1. --validate true  2. ---validate false 3. --stats  4. --stats & --validate  0.exit ')))
         rl.prompt();
         rl.on('line', (input) => {
             if (input === '1') {
@@ -28,12 +26,15 @@ export const CLI = () => {
                     statsAndValidate: false,
                 };
 
-                mdLinks(response, options)
+                mdLinks(path, options)
                     .then((result) => {
                         console.log(result);
-                    });
+                    })
+                    .catch(() => {
+                        console.log('Enter a valid Path 👾 GAME OVER 👾');
+                    })
             }
-            if (input === '2') {
+            else if (input === '2') {
                 const options = {
                     validateTrue: false,
                     validateFalse: true,
@@ -46,11 +47,11 @@ export const CLI = () => {
                         console.log(result);
                     })
                     .catch(() => {
-                        console.log('Enter a valid Path')
+                        console.log('Enter a valid Path 👾 GAME OVER 👾');
                     })
             }
 
-            if (input === '3') {
+            else if (input === '3') {
                 const options = {
                     validateTrue: false,
                     validateFalse: false,
@@ -61,9 +62,12 @@ export const CLI = () => {
                 mdLinks(response, options)
                     .then((result) => {
                         console.log(result);
-                    });
+                    })
+                    .catch(() => {
+                        console.log('Enter a valid Path 👾 GAME OVER 👾');
+                    })
             }
-            if (input === '4') {
+            else if (input === '4') {
                 const options = {
                     validateTrue: false,
                     validateFalse: false,
@@ -75,19 +79,17 @@ export const CLI = () => {
                     .then((result) => {
                         console.log(result);
                     })
-                    .catch(()=>{
-                        console.log('GAME OVER');
+                    .catch(() => {
+                        console.log('Enter a valid Path 👾 GAME OVER 👾');
                     })
             }
-            if (input === '0') {
+            else if (input === '0') {
                 0
                 process.exit();
             }
             else {
-                // console.log('ingresa una opción valida')
+                console.log('👾   Enter a valid option  👾');
             }
-
-            path = input.trim()
         });
     });
 };
