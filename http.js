@@ -32,7 +32,7 @@ export const validateLinks = (arrayObjects) => {
                             return { ...element, status: response.status, message: 'FAIL' }
                         }
                     }).catch((error) => {
-                        return { ...element, status: error.message, message: 'FAIL' }
+                        return { ...element, status: error.message.status, message: 'FAIL' }
                     });
          };
     });

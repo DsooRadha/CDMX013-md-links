@@ -4,6 +4,7 @@ const myFunction = () => {
         setTimeout(() => {
             resolve('paso 2');
         }, 2000);
+        reject('ha ocurrido un error')
     })
 }
 

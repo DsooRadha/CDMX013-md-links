@@ -34,8 +34,8 @@ export const extractLinksAndText = (routesAbsolute) => {
       
         const link = linkWithText.match(/\http.*?\)/g);
         const linkClean = link.toString().replace(/\)/g, "");
-        const text = linkWithText.match(/\[.*?\(/g);
-        const textClean = text.toString().replace(/\[|\]|\(/g, "");
+        const text = linkWithText.match(/\[[^\[\]]*?\]/g);
+        const textClean = text.toString().replace(/\[|\]/g, "");
       
         resultArray.push({
           name: file,

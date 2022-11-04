@@ -70,6 +70,8 @@ export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndVali
             })
 
         }
+
+        // reject('Ha ocurrido un error');        
     });
 };
 

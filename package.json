@@ -10,7 +10,7 @@
     "test": "test"
   },
   "bin": {
-    "mdLinks": "node index.js"
+    "mdLinks": "index.js"
   },
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --verbose --coverage",
@@ -36,5 +36,6 @@
   "jest": {
     "testEnvironment": "jest-environment-node",
     "transform": {}
-  }
+  },
+  "devDependencies": {}
 }

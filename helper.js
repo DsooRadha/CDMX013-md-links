@@ -1,7 +1,10 @@
+#!/usr/bin/env node
 import process from 'node:process';
 import readLine from 'node:readline';
 import chalk from 'chalk';
 import { mdLinks } from './mdLinks.js';
+
+
 
 export const CLI = () => {
     console.clear();
@@ -10,11 +13,8 @@ export const CLI = () => {
     console.log(chalk.blue('=============================================================='));
 
     const rl = readLine.createInterface(process.stdin, process.stdout);
-    const dataUser = {
-        route: ''
-    };
+
     rl.question((chalk.blue('Enter a route  ')), (response) => {
-        dataUser.route = response
 
         rl.setPrompt((chalk.blue('Select an option:  1. --validate true  2. ---validate false 3. --stats  4. --stats & --validate  0.exit ')))
         rl.prompt();
@@ -44,6 +44,10 @@ export const CLI = () => {
                     .then((result) => {
                         console.log(result);
                     });
+                // mdLinks(response, options)
+                //     .catch((error) => {
+                //         console.log('Enter a valid Path')
+                //     })
             }
 
             if (input === '3') {
@@ -75,11 +79,12 @@ export const CLI = () => {
             if (input === '0') {
                 0
                 process.exit();
-            } else {
-                'ingresa una opción valida'
+            }
+            else {
+                // console.log('ingresa una opción valida')
             }
 
-            dataUser.option = input.trim()
+            response = input.trim()
         });
     });
 };
