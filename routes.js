@@ -44,4 +44,4 @@ const filesInPathDirectory = (route) => {
     return filesResult
 };
 
-//  console.log(routeFiles('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md'));
+//   console.log(routeFiles('./pruebasMD'));

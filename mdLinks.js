@@ -1,6 +1,7 @@
 import { routeFiles } from "./routes.js";
-import { extractLinksAndText, readFile } from './lab.js';
+import { extractLinksAndText } from './lab.js';
 import { validateLinks } from './http.js';
+import { stastTrue } from "./stats.js";
 
 /** 
  * @param {path,{options}} 
@@ -10,10 +11,10 @@ export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndVali
     return new Promise((resolve, reject) => {
 
         if (validateTrue) {
-            const arrayPromises = validateLinks(extractLinksAndText(routeFiles(path)));
-            Promise.all(arrayPromises).then((res) => {
-                resolve(res)
-            })
+            resolve( validateLinks(extractLinksAndText(routeFiles(path))));
+            // Promise.all(arrayPromises).then((res) => {
+            //     resolve(res)
+            // })
             // resolve( Promise.all(arrayPromises));
         }
         if (validateFalse) {
@@ -21,42 +22,21 @@ export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndVali
         }
 
         if (stats) {
-            const stats = [];
-            const allObjectStats = []
-            const filesMD = routeFiles(path)
-            filesMD.forEach(file => {
-                const stringFile = readFile(file)
-                const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
-                stats.push({
-                    file, link: textAndLinksMD
-                })
-            });
-            const objectStats = stats.map(element => {
-
-                if (element.link !== null) {
-                    const links = element.link
-                    allObjectStats.push({ file: element.file, links: links.length, uniqueLinks: new Set(links).size });
-                }
-            })
-            resolve(allObjectStats)
-        
+            resolve(stastTrue(path))
         }
         if (statsAndValidate) {
-            const links = []
+            
             const unique = []
             const stastCount = extractLinksAndText(routeFiles(path));
-            links.push(stastCount.length);
+         
             stastCount.forEach(element => {
                 if (!unique.includes(element.href)) {
                     unique.push(element.href);
                 }
-
-                links.push(element.href)
             })
 
-            const arrayPromises = validateLinks(extractLinksAndText(routeFiles(path)));
-            const validation = Promise.all(arrayPromises)
-            validation.then((result) => {
+            const arrayPromise = validateLinks(extractLinksAndText(routeFiles(path)));
+            arrayPromise.then((result) => {
 
                 const broken = []
 
@@ -76,15 +56,18 @@ export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndVali
 };
 
 const options = {
-    validateTrue:true,
+    validateTrue:false,
     validateFalse: false,
     stats: false,
     statsAndValidate: true,
 };
 
-mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md', options)
+mdLinks('./pruebasMD', options)
     .then((result) => {
-        //  console.log(result);
-    });
+        // console.log(result);
+    })
+    .catch((error) =>{
+        // console.log(error,'Error')
+    })
 
     // console.log(routeFiles('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md'));

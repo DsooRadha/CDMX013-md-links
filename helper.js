@@ -15,6 +15,7 @@ export const CLI = () => {
     const rl = readLine.createInterface(process.stdin, process.stdout);
 
     rl.question((chalk.blue('Enter a route  ')), (response) => {
+        let path= response
 
         rl.setPrompt((chalk.blue('Select an option:  1. --validate true  2. ---validate false 3. --stats  4. --stats & --validate  0.exit ')))
         rl.prompt();
@@ -43,11 +44,10 @@ export const CLI = () => {
                 mdLinks(response, options)
                     .then((result) => {
                         console.log(result);
-                    });
-                // mdLinks(response, options)
-                //     .catch((error) => {
-                //         console.log('Enter a valid Path')
-                //     })
+                    })
+                    .catch(() => {
+                        console.log('Enter a valid Path')
+                    })
             }
 
             if (input === '3') {
@@ -74,7 +74,10 @@ export const CLI = () => {
                 mdLinks(response, options)
                     .then((result) => {
                         console.log(result);
-                    });
+                    })
+                    .catch(()=>{
+                        console.log('GAME OVER');
+                    })
             }
             if (input === '0') {
                 0
@@ -84,7 +87,7 @@ export const CLI = () => {
                 // console.log('ingresa una opción valida')
             }
 
-            response = input.trim()
+            path = input.trim()
         });
     });
 };

@@ -32,12 +32,17 @@ export const validateLinks = (arrayObjects) => {
                             return { ...element, status: response.status, message: 'FAIL' }
                         }
                     }).catch((error) => {
-                        return { ...element, status: error.message.status, message: 'FAIL' }
+                        return { ...element, status: error.message, message: 'FAIL' }
                     });
          };
     });
-return addStatusAndMessage
+return Promise.all(addStatusAndMessage)
 };
+
+
+// validateLinks(testObject).then((result)=>{
+//          console.log(result);
+//     });
 
 // const arrayPromises= validateLinks(testObject)
 // const endObject= Promise.all(arrayPromises)
