@@ -14,7 +14,7 @@ export const routeFiles = (path) => {
     };
 
     if (pathLib.extname(absolutePath) === '.md') {
-        return absolutePath
+        return [absolutePath]
     };
 
     return 'GAME OVER'
@@ -44,4 +44,4 @@ const filesInPathDirectory = (route) => {
     return filesResult
 };
 
-// console.log(routeFiles('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'));
+//  console.log(routeFiles('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md'));

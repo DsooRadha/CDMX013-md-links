@@ -24,7 +24,6 @@ export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndVali
             const stats = [];
             const allObjectStats = []
             const filesMD = routeFiles(path)
-            console.log(routeFiles(path));
             filesMD.forEach(file => {
                 const stringFile = readFile(file)
                 const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
@@ -75,15 +74,15 @@ export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndVali
 };
 
 const options = {
-    validateTrue:false,
+    validateTrue:true,
     validateFalse: false,
-    stats: true,
-    statsAndValidate: false,
+    stats: false,
+    statsAndValidate: true,
 };
 
 mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md', options)
     .then((result) => {
-         console.log(result);
+        //  console.log(result);
     });
 
-    console.log(routeFiles('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md'));
+    // console.log(routeFiles('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md'));
