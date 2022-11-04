@@ -9,7 +9,6 @@ import { validateLinks } from './http.js';
 export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndValidate }) => {
     return new Promise((resolve, reject) => {
 
-
         if (validateTrue) {
             const arrayPromises = validateLinks(extractLinksAndText(routeFiles(path)));
             Promise.all(arrayPromises).then((res) => {
@@ -25,6 +24,7 @@ export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndVali
             const stats = [];
             const allObjectStats = []
             const filesMD = routeFiles(path)
+            console.log(routeFiles(path));
             filesMD.forEach(file => {
                 const stringFile = readFile(file)
                 const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
@@ -40,6 +40,7 @@ export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndVali
                 }
             })
             resolve(allObjectStats)
+        
         }
         if (statsAndValidate) {
             const links = []
@@ -74,16 +75,15 @@ export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndVali
 };
 
 const options = {
-    validateTrue: false,
+    validateTrue:false,
     validateFalse: false,
-    stats: false,
-    statsAndValidate: true,
+    stats: true,
+    statsAndValidate: false,
 };
 
-mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD', options)
+mdLinks('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md', options)
     .then((result) => {
-        console.log(result);
+         console.log(result);
     });
 
-
-//agregar casos con la opcion de stats y como stats interactua con validate
+    console.log(routeFiles('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md'));

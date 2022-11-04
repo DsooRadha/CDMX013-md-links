@@ -24,8 +24,8 @@ export const extractLinksAndText = (routesAbsolute) => {
 
   let resultArray = []
 
-  const routesAbsolutesArray = routesAbsolute
-  routesAbsolutesArray.forEach(file => {
+  const routesAbsolutesArray = routesAbsolute;
+    routesAbsolutesArray.forEach(file => {
     const stringFile = readFile(file);
     const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi);
 

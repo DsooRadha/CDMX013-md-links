@@ -1,9 +1,7 @@
 import process from 'node:process';
 import readLine from 'node:readline';
 import chalk from 'chalk';
-import { routeFiles } from './routes.js';
-import { extractLinksAndText, readFile } from './lab.js';
-import { mdLinks } from './mdLinks.js'
+import { mdLinks } from './mdLinks.js';
 
 export const CLI = () => {
     console.clear();
@@ -22,61 +20,57 @@ export const CLI = () => {
         rl.prompt();
         rl.on('line', (input) => {
             if (input === '1') {
+                const options = {
+                    validateTrue: true,
+                    validateFalse: false,
+                    stats: false,
+                    statsAndValidate: false,
+                };
 
-                const arrayPromise = mdLinks(response);
-                const resultPromise = Promise.all(...arrayPromise);
-                resultPromise.then((result) => {
-                    console.log(result);
-                })
+                mdLinks(response, options)
+                    .then((result) => {
+                        console.log(result);
+                    });
             }
             if (input === '2') {
+                const options = {
+                    validateTrue: false,
+                    validateFalse: true,
+                    stats: false,
+                    statsAndValidate: false,
+                };
 
-                console.log(extractLinksAndText(routeFiles(response)));
+                mdLinks(response, options)
+                    .then((result) => {
+                        console.log(result);
+                    });
             }
 
             if (input === '3') {
+                const options = {
+                    validateTrue: false,
+                    validateFalse: false,
+                    stats: true,
+                    statsAndValidate: false,
+                };
 
-                const stats = [];
-                const filesMD = routeFiles(response)
-                filesMD.forEach(file => {
-                    const stringFile = readFile(file)
-                    const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
-                    stats.push({
-                        file, link: textAndLinksMD
-                    })
-                });
-                const objectStats = stats.map(element => {
-
-                    if (element.link !== null) {
-
-                        const links = element.link
-                        console.log({ file: element.file, links: links.length, uniqueLinks: new Set(links).size });
-                    }
-                })
-                // console.log('estadisticas con cantidad de links y los que son unicos');
+                mdLinks(response, options)
+                    .then((result) => {
+                        console.log(result);
+                    });
             }
             if (input === '4') {
-                const broken = []
-                const arrayPromise = mdLinks(response)
-                const resultPromise = Promise.all(...arrayPromise)
-                resultPromise.then((result) => {
+                const options = {
+                    validateTrue: false,
+                    validateFalse: false,
+                    stats: false,
+                    statsAndValidate: true,
+                };
 
-                    result.map(element => {
-                        const file = element.name
-                        const message = element.message
-                        if (element.message !== 'OK') {
-                            broken.push({ file, broken: message.length });
-                        }
-                        // if (element.link !== null){
-                        //    console.log( element.name, element.href, '<-------------')
-                        //     const links = element.href
-                        //     broken.push({ file: element.name, links:links.length, uniqueLinks: new Set(links).size });
-                        //     // broken.push({ totalLinks: message.length })
-                        // }
+                mdLinks(response, options)
+                    .then((result) => {
+                        console.log(result);
                     });
-                    console.log(broken);
-                })
-
             }
             if (input === '0') {
                 0
