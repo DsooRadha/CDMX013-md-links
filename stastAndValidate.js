@@ -28,4 +28,17 @@ export const statsBroken = (path) => {
     return ({ file: path, totalLinks: stastCount.length, uniqueLinks: unique.length, brokenLinks: broken.length })
 }
 
-console.log(statsBroken('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/'));
+// console.log(statsBroken('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'));
+
+const unique=(path)=>{
+    const unique = []
+    const stastCount = extractLinksAndText(routeFiles(path));
+
+    stastCount.forEach(element => {
+        if (!unique.includes(element.href)) {
+            unique.push(element.href);
+        };
+    });
+    return [unique.length,stastCount.length]
+};
+// console.log(unique('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'));

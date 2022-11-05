@@ -9,34 +9,30 @@ import { statsBroken } from "./stastAndValidate.js"
  * @return {arrayPromiseobjects}  
  */
 
-export const mdLinks = (path, { validateTrue, validateFalse, stats, statsAndValidate }) => {
+export const mdLinks = (path, { validate, stats }) => {
     return new Promise((resolve, reject) => {
-
-        if (validateTrue) {
-            resolve(validateLinks(extractLinksAndText(routeFiles(path))));
-
-        }
-        else if (validateFalse) {
-            resolve(extractLinksAndText(routeFiles(path)));
-        }
-
-        else if (stats) {
-            resolve(stastTrue(path))
-        }
-        else if (statsAndValidate) {
+        if (validate && stats) {
             resolve(statsBroken(path))
+            return
+        }      
+
+        if (validate) {
+            resolve(validateLinks(extractLinksAndText(routeFiles(path))));
+            return
+        } 
+
+        if (stats) {
+            resolve(stastTrue(path))
+            return
         }
-        // else{
-        //     reject('Ha ocurrido un error'); 
-        //  }       
+
+      resolve(extractLinksAndText(routeFiles(path)));
     });
 };
 
 const options = {
-    validateTrue: false,
-    validateFalse: false,
-    stats: false,
-    statsAndValidate: false,
+    validate: true,
+    stats: true,
 };
 
 mdLinks('./README.md', options)

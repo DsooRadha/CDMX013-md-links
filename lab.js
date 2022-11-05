@@ -31,7 +31,7 @@ export const extractLinksAndText = (routesAbsolute) => {
     if (textAndLinksMD !== null) {
 
       textAndLinksMD.forEach(linkWithText => {
-      
+
         const link = linkWithText.match(/\http.*?\)/g);
         const linkClean = link.toString().replace(/\)/g, "");
         const text = linkWithText.match(/\[[^\[\]]*?\]/g);

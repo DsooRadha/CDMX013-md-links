@@ -20,10 +20,8 @@ export const CLI = () => {
         rl.on('line', (input) => {
             if (input === '1') {
                 const options = {
-                    validateTrue: true,
-                    validateFalse: false,
+                    validate: true,
                     stats: false,
-                    statsAndValidate: false,
                 };
 
                 mdLinks(path, options)
@@ -36,10 +34,8 @@ export const CLI = () => {
             }
             else if (input === '2') {
                 const options = {
-                    validateTrue: false,
-                    validateFalse: true,
+                    validate: false,
                     stats: false,
-                    statsAndValidate: false,
                 };
 
                 mdLinks(response, options)
@@ -53,10 +49,8 @@ export const CLI = () => {
 
             else if (input === '3') {
                 const options = {
-                    validateTrue: false,
-                    validateFalse: false,
+                    validate: false,
                     stats: true,
-                    statsAndValidate: false,
                 };
 
                 mdLinks(response, options)
@@ -69,11 +63,10 @@ export const CLI = () => {
             }
             else if (input === '4') {
                 const options = {
-                    validateTrue: false,
-                    validateFalse: false,
-                    stats: false,
-                    statsAndValidate: true,
+                    validate: true,
+                    stats: true,
                 };
+                
 
                 mdLinks(response, options)
                     .then((result) => {
