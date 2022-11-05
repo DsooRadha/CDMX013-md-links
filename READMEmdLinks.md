@@ -1,14 +1,14 @@
 #  👾 MD LINKS 👾
-## PASO 1. 
+## **PASO 1.INICIA LA LIBRERÍA** 
 Ejecuta el comando '$ mdLinks' + ![eeeee](https://user-images.githubusercontent.com/101679628/200096615-536f8320-982b-450a-9eea-a998b7eb0074.png)
 
 'ENTER'
-## PASO 2.
+## **PASO 2. INGRESA LA RUTA**
 te aparecera un mensaje donde se solicita ingreses una ruta 
 para continuar ejecutar 'ENTER'
 y selecciona una de las opciones:
 
-### PASO 3. OPTIONS 
+### **PASO 3. OPTIONS** 
 Se te mostrará un menú con las siguientes opciones:
 1. ### --validate true
 
@@ -38,4 +38,8 @@ Al introducir 0 mas enter estarás abandonado la librería
  Si aún tienes dudas de su funcionamiento te compartimos unos diagramas de de flujo sobre su funcionamiento 
 
 
- 
+
+
+ **Aportes, comentarios, dudas... puedes contactarnos a través del correo sthiramyoga@gmail.com**
+
+
