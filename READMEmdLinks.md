@@ -1,9 +1,10 @@
 #  👾 MD LINKS 👾
-## **PASO 1.INICIA LA LIBRERÍA** 
-Ejecuta el comando '$ mdLinks' + ![eeeee](https://user-images.githubusercontent.com/101679628/200096615-536f8320-982b-450a-9eea-a998b7eb0074.png)
+### **PASO 1.INICIA LA LIBRERÍA** 
+Ejecuta en la terminal el comando:
 
-'ENTER'
-## **PASO 2. INGRESA LA RUTA**
+ '...$ mdLinks' + ![eeeee](https://user-images.githubusercontent.com/101679628/200096615-536f8320-982b-450a-9eea-a998b7eb0074.png)
+
+### **PASO 2. INGRESA LA RUTA**
 te aparecera un mensaje donde se solicita ingreses una ruta 
 para continuar ejecutar 'ENTER'
 y selecciona una de las opciones:
@@ -25,7 +26,7 @@ Regresa un array de objetos similar a validate True, pero sin el status y el mes
 Muestra un array de objetos con el nombre del archivo md ingresado o de los archivos md de la ruta del directorio que ingresaste, asi como el  total de de links por archivos y cuantos de ellos son unicos. 
 *[{name,totalLinks, uniqueLinks }]*
 
-4. ### --stats & --validate:** 
+4. ### --stats & --validate
 
 Arroja un objeto con el la ruta ingresada en total de links de esa ruta, cuales de ellos son unicos y cuantos estan rotos. 
 *{name, totalLinks, uniqueLinks, brokenLinks}*
@@ -35,11 +36,16 @@ Al introducir 0 mas enter estarás abandonado la librería
 
 **Algo muy cool que puedes hacer en esta libería** es que puedes explorar las opciones de tratamiendo de la ruta. Al darle *delete* o *flecha hacia arriba* te regresa el menu de opciones.
  
- Si aún tienes dudas de su funcionamiento te compartimos unos diagramas de de flujo sobre su funcionamiento 
+ *Si aún tienes dudas de su funcionamiento te compartimos unos diagramas de de flujo sobre su funcionamiento de la API*
 
+![APImdlinks](https://user-images.githubusercontent.com/101679628/200127721-a786dba9-464d-49dc-b760-dcde71d4e3a2.png)
 
+*Y el funcionamiento del CLI*
 
+![CLI](https://user-images.githubusercontent.com/101679628/200131979-2cd302ca-3467-4b39-90b2-66d156627003.png)
 
- **Aportes, comentarios, dudas... puedes contactarnos a través del correo sthiramyoga@gmail.com**
+ >_sthiramyoga@gmail.com_  
+ >Adei Cabañas
+
 
 
