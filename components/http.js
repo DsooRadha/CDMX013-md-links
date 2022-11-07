@@ -36,8 +36,3 @@ export const validateLinks = (arrayObjects) => {
     });
     return Promise.all(addStatusAndMessage)
 };
-
-
-// validateLinks(testObject).then((result)=>{
-//          console.log(result);
-//     });

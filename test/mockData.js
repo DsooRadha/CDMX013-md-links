@@ -92,18 +92,8 @@ export const arrayObjectsValidateFalse = [
     },
     {
         name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md',
-        href: 'https://ejemplo.com',
-        text: 'image example 7'
-    },
-    {
-        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md',
-        href: 'http://www.limni.net',
-        text: 'enlace en línea'
-    },
-    {
-        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md',
-        href: 'http://www.liimni.net',
-        text: 'enlace roto'
+        href: 'https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e',
+        text: 'Linea de comando CLI'
     }
 ];
 

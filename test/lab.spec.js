@@ -1,12 +1,12 @@
-// import { extractLinksAndText, readFile } from '../components/lab.js'
-// import { arrayPathFiles, arrayObjectsValidateFalse } from './mockData.js'
+import { extractLinksAndText } from '../components/lab.js'
+import { arrayPathFiles, arrayObjectsValidateFalse } from './mockData.js'
 
-// describe('extracLinksAnText', () => {
+describe('extracLinksAnText', () => {
 
-//     test('extracLinksAndText array  pathsfiles MD return object with Links, Text and File', () => {
+    test('extracLinksAndText array  pathsfiles MD return object with Links, Text and File', () => {
         
-//         return expect(extractLinksAndText(arrayPathFiles).toEqual(arrayObjectsValidateFalse));
+       expect(extractLinksAndText(arrayPathFiles)).toEqual(arrayObjectsValidateFalse);
 
-//     })
-// })
+    })
+})
 

@@ -6,7 +6,7 @@ export const routeFiles = (path) => {
     const absolutePath = convertingToAbsoluteRoutes(path);
 
     if (fs.existsSync(absolutePath) === false) {
-        return 'GAME OVER'
+        throw ('This route does not exist')
     };
 
     if (pathIsFile(absolutePath) === false) {
@@ -16,8 +16,7 @@ export const routeFiles = (path) => {
     if (pathLib.extname(absolutePath) === '.md') {
         return [absolutePath]
     };
-
-    return 'GAME OVER'
+    throw ('There are no md files in this path')
 };
 
 /**
@@ -43,5 +42,3 @@ const filesInPathDirectory = (route) => {
 
     return filesResult
 };
-
-//   console.log(routeFiles('./pruebasMD'));

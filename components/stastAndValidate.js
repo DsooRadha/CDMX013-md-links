@@ -13,7 +13,6 @@ const unique = (path) => {
     });
     return { uniqueLinks: unique.length, totalLinks: stastCount.length }
 };
-//  console.log(unique('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'));
 
 export const statsBroken = (path) => {
 
@@ -32,5 +31,4 @@ export const statsBroken = (path) => {
     return ({ file: path, ...totalAndUniqueLinks, brokenLinks: broken.length });
 };
 
-//  console.log(statsBroken('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'));
 
