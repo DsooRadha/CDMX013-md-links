@@ -23,4 +23,4 @@ export const stastTrue = (path) => {
 
 }
 
- console.log(stastTrue('./pruebasMD'));
+//  console.log(stastTrue('./pruebasMD'));

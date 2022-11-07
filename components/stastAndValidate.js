@@ -32,5 +32,5 @@ export const statsBroken = (path) => {
     return ({ file: path, ...totalAndUniqueLinks, brokenLinks: broken.length });
 };
 
- console.log(statsBroken('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'));
+//  console.log(statsBroken('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'));
 

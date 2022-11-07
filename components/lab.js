@@ -8,10 +8,10 @@ export const readOnlyFile = (routes) => fs.readFileSync(routes, 'utf8');
 export const readFile = (routes) => fs.readFileSync(routes, 'utf8').toString();
 
 const routesArray = [
-  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md',
-  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/level2/level2.md',
-  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/level2/level3/level3.md',
-  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/nivel1.md',
+  // '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md',
+  // '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/level2/level2.md',
+  // '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/level2/level3/level3.md',
+  // '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/nivel1.md',
   '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
   '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md'
 ];
@@ -48,4 +48,4 @@ export const extractLinksAndText = (routesAbsolute) => {
   return resultArray
 };
 
-  // console.log(extractLinksAndText(routesArray));
+  //  console.log(extractLinksAndText(routesArray));

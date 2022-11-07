@@ -30,17 +30,17 @@ export const mdLinks = (path, { validate, stats }) => {
     });
 };
 
-// const options = {
-//     validate: true,
-//     stats: true,
-// };
+const options = {
+    validate: false,
+    stats: true,
+};
 
-// mdLinks('./README.md', options)
+// mdLinks('./pruebasMD/prueba.md', options)
 //     .then((result) => {
-//         // console.log(result);
+//         console.log(result);
 //     })
 //     .catch((error) => {
-//         // console.log(error, '👾 GAME OVER 👾')
+//       console.log(error, '👾 GAME OVER 👾')
 //     })
 
     // console.log(routeFiles('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md'));
