@@ -502,6 +502,7 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 * [Leer un archivo](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback)
 * [Leer un directorio](https://nodejs.org/api/fs.html#fs_fs_readdir_path_options_callback)
 * [Path](https://nodejs.org/api/path.html)
+* [Link404](https://es.wikipedia.org/wiki/Wikpedia:Portada)
 * [Linea de comando CLI](https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e)
 
 ## 9. Checklist

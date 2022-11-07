@@ -1,8 +1,8 @@
-import { routeFiles } from "./routes.js";
-import { extractLinksAndText } from './lab.js';
-import { validateLinks } from './http.js';
-import { stastTrue } from "./stats.js";
-import { statsBroken } from "./stastAndValidate.js"
+import { routeFiles } from "./components/routes.js";
+import { extractLinksAndText } from './components/lab.js';
+import { validateLinks } from './components/http.js';
+import { stastTrue } from "./components/stats.js";
+import { statsBroken } from "./components/stastAndValidate.js"
 
 /** 
  * @param {path,{options}} 
@@ -30,17 +30,17 @@ export const mdLinks = (path, { validate, stats }) => {
     });
 };
 
-const options = {
-    validate: true,
-    stats: true,
-};
+// const options = {
+//     validate: true,
+//     stats: true,
+// };
 
-mdLinks('./README.md', options)
-    .then((result) => {
-        console.log(result);
-    })
-    .catch((error) => {
-        console.log(error, '👾 GAME OVER 👾')
-    })
+// mdLinks('./README.md', options)
+//     .then((result) => {
+//         // console.log(result);
+//     })
+//     .catch((error) => {
+//         // console.log(error, '👾 GAME OVER 👾')
+//     })
 
     // console.log(routeFiles('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md'));
