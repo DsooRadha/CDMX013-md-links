@@ -27,20 +27,23 @@ export const mdLinks = (path, { validate, stats }) => {
         }
 
       resolve(extractLinksAndText(routeFiles(path)));
+     
+
+      reject('Enter path Valide')
     });
 };
 
 const options = {
     validate: false,
-    stats: true,
+    stats: false,
 };
 
-// mdLinks('./pruebasMD/prueba.md', options)
-//     .then((result) => {
-//         console.log(result);
-//     })
-//     .catch((error) => {
-//       console.log(error, '👾 GAME OVER 👾')
-//     })
+mdLinks('./pruebasMD/pruebaSncilla/prueba.md', options)
+    .then((result) => {
+        console.log(result);
+    })
+    .catch(() => {
+      console.log( '👾 GAME OVER 👾')
+    })
 
     // console.log(routeFiles('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md'));

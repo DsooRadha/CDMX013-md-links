@@ -114,10 +114,55 @@ export const validateAndStats = {
     brokenLinks: 0
 }
 
-export const vFalse = [
+export const statsTrue = [
     {
         file: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
         links: 6,
         uniqueLinks: 6
     }
 ]
+
+export const vFalse =
+[
+    {
+      name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
+      href: 'https://ejemplo.com',
+      text: 'image example 1'
+    },
+    {
+      name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
+      href: 'http://www.limni.net',
+      text: 'enlace en línea'
+    },
+    {
+      name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
+      href: 'http://www.liimni.net',
+      text: 'enlace roto'
+    },
+    {
+      name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
+      href: 'https://ejemplo.com',
+      text: 'image example 2'
+    },
+    {
+      name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
+      href: 'https://ejemplo.com',
+      text: 'image example 3'
+    },
+    {
+      name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
+      href: 'https://nodejs.org/',
+      text: 'Node.js'
+    }
+  ]
+
+  export const vTrue =
+  [
+    {
+      name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md',
+      href: 'https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e',
+      text: 'Linea de comando CLI',
+      status: 200,
+      message: 'OK'
+    }
+  ]
