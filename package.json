@@ -9,8 +9,11 @@
   "directories": {
     "test": "test"
   },
+  "bin": {
+    "mdLinks": "index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --verbose --coverage",
     "start": "node index.js"
   },
   "repository": {
@@ -18,7 +21,7 @@
     "url": "git+https://github.com/DsooRadha/CDMX013-md-links.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Dsoo Cabañas",
   "type": "module",
   "license": "ISC",
   "bugs": {
@@ -26,11 +29,13 @@
   },
   "homepage": "https://github.com/DsooRadha/CDMX013-md-links#readme",
   "dependencies": {
-    "@types/marked": "^4.0.7",
-    "axios": "^1.1.3",
-    "get-the-link-markdown": "^1.0.1",
-    "markdown-link-extractor": "^3.1.0",
-    "marked": "^4.1.1",
+    "chalk": "^5.1.2",
+    "jest": "^29.2.2",
     "node-fetch": "^3.2.10"
-  }
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-node",
+    "transform": {}
+  },
+  "devDependencies": {}
 }

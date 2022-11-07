@@ -3,11 +3,9 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 ***
 Short Description about the project.
 
-[image example](https://ejemplo.com)
+[Linea de comando CLI](https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e)
 
-[enlace en línea](http://www.limni.net)
 
-[enlace roto](http://www.liimni.net)
 
-[enlace roto](http://www.liimni.net)
+
 
