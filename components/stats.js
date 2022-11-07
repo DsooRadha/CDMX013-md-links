@@ -22,5 +22,3 @@ export const stastTrue = (path) => {
     return allObjectStats
 
 }
-
-//  console.log(stastTrue('./pruebasMD'));

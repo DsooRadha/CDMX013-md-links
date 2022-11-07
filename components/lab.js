@@ -7,15 +7,6 @@ export const isDirectory = (routes) => fs.lstatSync(routes, (true, false)).isDir
 export const readOnlyFile = (routes) => fs.readFileSync(routes, 'utf8');
 export const readFile = (routes) => fs.readFileSync(routes, 'utf8').toString();
 
-const routesArray = [
-  // '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/README.md',
-  // '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/level2/level2.md',
-  // '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/level2/level3/level3.md',
-  // '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/nivel1.md',
-  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
-  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md'
-];
-
 /** 
  * @param {array} fileMD
  * @return {array} an array object validate false

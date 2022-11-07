@@ -1,19 +1,5 @@
 import fetch from 'node-fetch';
 
-const testObject = [
-
-    {
-        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
-        href: 'https://ejemplo.com',
-        text: 'image example'
-    },
-    {
-        name: '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
-        href: 'http://www.limni.net',
-        text: 'enlace en línea'
-    },
-];
-
 /** 
  * @param {arrayObjects} 
  * @return {arrayPromise}  validate true
