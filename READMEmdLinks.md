@@ -1,13 +1,13 @@
 #  👾 MD LINKS 👾
+
+MD Links es una librería cuyo fin relizar una serie de validaciones o estadisticas a los links que se encuentan en archivos MarkDown, a través del ingreso de una ruta.
 ### **PASO 1.INICIA LA LIBRERÍA** 
 Ejecuta en la terminal el comando:
 
- '...$ mdLinks' + ![eeeee](https://user-images.githubusercontent.com/101679628/200096615-536f8320-982b-450a-9eea-a998b7eb0074.png)
+ **...$ mdLinks**
 
 ### **PASO 2. INGRESA LA RUTA**
-te aparecera un mensaje donde se solicita ingreses una ruta 
-para continuar ejecutar 'ENTER'
-y selecciona una de las opciones:
+Te aparecerá un mensaje donde se solicita ingrese una ruta para continuar ejecuta 'ENTER' y selecciona una de las opciones:
 
 ### **PASO 3. OPTIONS** 
 Se te mostrará un menú con las siguientes opciones:
@@ -33,8 +33,6 @@ Arroja un objeto con el la ruta ingresada en total de links de esa ruta, cuales 
 
 0. ### Exit
 Al introducir 0 mas enter estarás abandonado la librería
-
-**Algo muy cool que puedes hacer en esta libería** es que puedes explorar las opciones de tratamiendo de la ruta. Al darle *delete* o *flecha hacia arriba* te regresa el menu de opciones.
  
  *Si aún tienes dudas de su funcionamiento te compartimos unos diagramas de de flujo sobre su funcionamiento de la API*
 
