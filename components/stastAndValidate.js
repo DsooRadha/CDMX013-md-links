@@ -1,5 +1,5 @@
 import { routeFiles } from "./routes.js";
-import { extractLinksAndText } from './lab.js';
+import { extractLinksAndText } from './validateFalse.js';
 import { validateLinks } from './http.js';
 
 const unique = (path) => {
@@ -16,19 +16,18 @@ const unique = (path) => {
 
 export const statsBroken = (path) => {
 
-    const totalAndUniqueLinks= unique(path);
+    const totalAndUniqueLinks = unique(path);
     const broken = [];
     const arrayPromise = validateLinks(extractLinksAndText(routeFiles(path)));
-    arrayPromise.then((result) => {
-
-        result.forEach(element => {
+    let counter = 0;
+    const objectBroken = arrayPromise.then((result) => {
+        result.map(element => {
 
             if (element.message == 'FAIL') {
-                broken.push(element)
-            };
+                counter ++;
+            }
         });
+        return ({ file: path, ...totalAndUniqueLinks, brokenLinks: counter })
     });
-    return ({ file: path, ...totalAndUniqueLinks, brokenLinks: broken.length });
+    return objectBroken
 };
-
-

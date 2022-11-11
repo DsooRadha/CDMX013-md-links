@@ -13,7 +13,7 @@ describe('mdLinks', () => {
 
     test('return an array of objects [{file, totalLinks, uniqueLinks}]', () => {
 
-        return mdLinks('./pruebasMD/prueba.md', { validate: false, stats: true }).then((results) => {
+        return mdLinks('./pruebasMD/pruebaSencilla/prueba.md', { validate: false, stats: true }).then((results) => {
             expect(results).toEqual(statsTrue)
 
         });
@@ -35,3 +35,5 @@ describe('mdLinks', () => {
         });
     });
 });
+
+

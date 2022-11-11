@@ -1,5 +1,5 @@
 import { routeFiles } from "./components/routes.js";
-import { extractLinksAndText } from './components/lab.js';
+import { extractLinksAndText } from './components/validateFalse.js';
 import { validateLinks } from './components/http.js';
 import { stastTrue } from "./components/stats.js";
 import { statsBroken } from "./components/stastAndValidate.js"
@@ -27,5 +27,3 @@ export const mdLinks = (path, { validate, stats }) => {
      
     });
 };
-
-   

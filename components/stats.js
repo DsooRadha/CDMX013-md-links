@@ -1,4 +1,4 @@
-import { readFile } from "./lab.js";
+import { readFile } from "./validateFalse.js";
 import { routeFiles } from "./routes.js"
 
 export const stastTrue = (path) => {
@@ -8,10 +8,16 @@ export const stastTrue = (path) => {
     filesMD.forEach(file => {
         const stringFile = readFile(file)
         const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
-        stats.push({
-            file, link: textAndLinksMD
-        })
+        textAndLinksMD.forEach(linkWithText => {
+
+            const link = linkWithText.match(/\http.*?\)/g);
+            const linkClean = link.toString().replace(/\)/g, "");
+            stats.push({
+                file, link: linkClean
+            });
+        });
     });
+    console.log(stats);
     stats.forEach(element => {
 
         if (element.link !== null) {

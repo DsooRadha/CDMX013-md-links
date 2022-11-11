@@ -17,7 +17,7 @@ export const CLI = () => {
         rl.setPrompt((chalk.cyan('Select an option:  1. --validate true  2. ---validate false 3. --stats  4. --stats & --validate  0.exit ')))
         rl.prompt();
         rl.on('line', (input) => {
-            
+
             if (input === '1') {
                 const options = { validate: true, stats: false };
 
@@ -70,7 +70,6 @@ export const CLI = () => {
             if (input === '0') {
                 0
                 process.exit();
-
             };
             console.log('👾   Enter a valid option  👾');
         });
