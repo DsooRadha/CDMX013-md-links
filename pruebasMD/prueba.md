@@ -3,14 +3,8 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 ***
 Short Description about the project.
 
-[image example 1](https://ejemplo.com)
+[image example](https://ejemplo.com)
 
 [enlace en línea](http://www.limni.net)
-
-[enlace roto](http://www.liimni.net)
-
-[image example 2](https://ejemplo.com)
-
-[image example 3](https://ejemplo.com)
 
 [Node.js](https://nodejs.org/)

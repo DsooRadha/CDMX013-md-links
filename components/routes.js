@@ -1,4 +1,4 @@
-import { convertingToAbsoluteRoutes, pathIsFile, isDirectory } from './lab.js';
+import { convertingToAbsoluteRoutes, pathIsFile, isDirectory } from './validateFalse.js';
 import fs from 'fs';
 import pathLib from 'node:path';
 

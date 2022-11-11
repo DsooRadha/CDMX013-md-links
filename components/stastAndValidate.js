@@ -1,5 +1,5 @@
 import { routeFiles } from "./routes.js";
-import { extractLinksAndText } from './lab.js';
+import { extractLinksAndText } from './validateFalse.js';
 import { validateLinks } from './http.js';
 
 const unique = (path) => {
@@ -20,15 +20,16 @@ export const statsBroken = (path) => {
     const broken = [];
     const arrayPromise = validateLinks(extractLinksAndText(routeFiles(path)));
     arrayPromise.then((result) => {
-
-        result.forEach(element => {
+        return result.map(element => {
 
             if (element.message == 'FAIL') {
-                broken.push(element)
+                let fail=element.message
+                // console.log(fail.length)
+                return ({ file: path, ...totalAndUniqueLinks, brokenLinks: fail })
             };
         });
     });
     return ({ file: path, ...totalAndUniqueLinks, brokenLinks: broken.length });
 };
 
-
+// console.log(statsBroken('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'))

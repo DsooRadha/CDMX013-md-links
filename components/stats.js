@@ -1,4 +1,4 @@
-import { readFile } from "./lab.js";
+import { readFile } from "./validateFalse.js";
 import { routeFiles } from "./routes.js"
 
 export const stastTrue = (path) => {

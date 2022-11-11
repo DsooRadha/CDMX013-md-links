@@ -1,4 +1,4 @@
-import { extractLinksAndText } from '../components/lab.js'
+import { extractLinksAndText } from '../components/validateFalse.js'
 import { arrayPathFiles, arrayObjectsValidateFalse } from './mockData.js'
 
 describe('extracLinksAnText', () => {
