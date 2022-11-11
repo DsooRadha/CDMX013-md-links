@@ -6,18 +6,19 @@ export const stastTrue = (path) => {
     const allObjectStats = []
     const filesMD = routeFiles(path)
     filesMD.forEach(file => {
+        const allLinks=[]
         const stringFile = readFile(file)
         const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
         textAndLinksMD.forEach(linkWithText => {
 
             const link = linkWithText.match(/\http.*?\)/g);
             const linkClean = link.toString().replace(/\)/g, "");
-            stats.push({
-                file, link: linkClean
-            });
+            allLinks.push(linkClean);
+        });
+        stats.push({
+            file, link: allLinks
         });
     });
-    console.log(stats);
     stats.forEach(element => {
 
         if (element.link !== null) {
