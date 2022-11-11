@@ -6,18 +6,22 @@ export const stastTrue = (path) => {
     const allObjectStats = []
     const filesMD = routeFiles(path)
     filesMD.forEach(file => {
-        const allLinks=[]
+        const allLinks = []
         const stringFile = readFile(file)
         const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
-        textAndLinksMD.forEach(linkWithText => {
-
-            const link = linkWithText.match(/\http.*?\)/g);
-            const linkClean = link.toString().replace(/\)/g, "");
-            allLinks.push(linkClean);
+        if (textAndLinksMD !== null) {
+        textAndLinksMD.forEach(element => {
+          
+                const link = element.match(/\http.*?\)/g);
+                const linkClean = link.toString().replace(/\)/g, "");
+                allLinks.push(linkClean);
+            
         });
+    }
         stats.push({
             file, link: allLinks
         });
+
     });
     stats.forEach(element => {
 
@@ -29,3 +33,4 @@ export const stastTrue = (path) => {
     return allObjectStats
 
 }
+console.log(stastTrue('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'));
