@@ -21,18 +21,13 @@ export const statsBroken = (path) => {
     const arrayPromise = validateLinks(extractLinksAndText(routeFiles(path)));
     let counter = 0;
     const objectBroken = arrayPromise.then((result) => {
-        return  result.map(element => {
+        result.map(element => {
 
             if (element.message == 'FAIL') {
-                counter ++
-                return ({ file: path, ...totalAndUniqueLinks, brokenLinks: counter });
+                counter ++;
             }
-            // else{
-            //     return ({ file: path, ...totalAndUniqueLinks, brokenLinks: 0 })
-            // };
         });
+        return ({ file: path, ...totalAndUniqueLinks, brokenLinks: counter })
     });
     return objectBroken
 };
-
-statsBroken('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD').then((res)=> console.log(res))

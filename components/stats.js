@@ -17,6 +17,7 @@ export const stastTrue = (path) => {
             });
         });
     });
+    console.log(stats);
     stats.forEach(element => {
 
         if (element.link !== null) {
