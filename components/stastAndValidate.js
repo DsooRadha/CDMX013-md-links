@@ -16,20 +16,23 @@ const unique = (path) => {
 
 export const statsBroken = (path) => {
 
-    const totalAndUniqueLinks= unique(path);
+    const totalAndUniqueLinks = unique(path);
     const broken = [];
     const arrayPromise = validateLinks(extractLinksAndText(routeFiles(path)));
-    arrayPromise.then((result) => {
-        return result.map(element => {
+    let counter = 0;
+    const objectBroken = arrayPromise.then((result) => {
+        return  result.map(element => {
 
             if (element.message == 'FAIL') {
-                let fail=element.message
-                // console.log(fail.length)
-                return ({ file: path, ...totalAndUniqueLinks, brokenLinks: fail })
-            };
+                counter ++
+                return ({ file: path, ...totalAndUniqueLinks, brokenLinks: counter });
+            }
+            // else{
+            //     return ({ file: path, ...totalAndUniqueLinks, brokenLinks: 0 })
+            // };
         });
     });
-    return ({ file: path, ...totalAndUniqueLinks, brokenLinks: broken.length });
+    return objectBroken
 };
 
-// console.log(statsBroken('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD'))
+statsBroken('/Users/dsoo/Developer/CDMX013-md-links/pruebasMD').then((res)=> console.log(res))

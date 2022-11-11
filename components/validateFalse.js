@@ -45,13 +45,3 @@ export const extractLinksAndText = (routesAbsolute) => {
   });
   return resultArray
 };
-
-
-const arrayPathFiles = [
-  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/level2/level3/level3.md',
-  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/nivel1.md',
-  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/prueba.md',
-  '/Users/dsoo/Developer/CDMX013-md-links/pruebasMD/pruebaSencilla/prueba.md'
-];
-
-console.log(extractLinksAndText(arrayPathFiles));

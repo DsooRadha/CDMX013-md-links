@@ -8,9 +8,14 @@ export const stastTrue = (path) => {
     filesMD.forEach(file => {
         const stringFile = readFile(file)
         const textAndLinksMD = stringFile.match(/\[(.+)\]\((https?:\/\/.+)\)/gi)
-        stats.push({
-            file, link: textAndLinksMD
-        })
+        textAndLinksMD.forEach(linkWithText => {
+
+            const link = linkWithText.match(/\http.*?\)/g);
+            const linkClean = link.toString().replace(/\)/g, "");
+            stats.push({
+                file, link: linkClean
+            });
+        });
     });
     stats.forEach(element => {
 

@@ -27,13 +27,3 @@ export const mdLinks = (path, { validate, stats }) => {
      
     });
 };
-
-const options = { validate: false, stats: true };
-
-mdLinks('./pruebasMD/pruebaSencilla/prueba.md', options)
-    .then((result) => {
-        console.log(result);
-    })
-    .catch(() => {
-        console.log('Enter a valid Path 👾 GAME OVER 👾');
-    });
