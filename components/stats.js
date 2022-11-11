@@ -17,11 +17,11 @@ export const stastTrue = (path) => {
                 allLinks.push(linkClean);
             
         });
-    }
+    
         stats.push({
             file, link: allLinks
         });
-
+    }
     });
     stats.forEach(element => {
 

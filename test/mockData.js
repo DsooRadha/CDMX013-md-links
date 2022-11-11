@@ -85,7 +85,7 @@ export const validateAndStats = {
     file: './pruebasMD/prueba.md',
     uniqueLinks: 3,
     totalLinks: 3,
-    brokenLinks: 0
+    brokenLinks: 1
 }
 
 export const statsTrue = 

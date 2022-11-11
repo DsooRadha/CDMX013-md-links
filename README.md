@@ -44,6 +44,3 @@ Al introducir 0 mas enter estarás abandonado la librería
 
  >_sthiramyoga@gmail.com_  
  >Adei Cabañas
-
-
-
